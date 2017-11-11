@@ -1,5 +1,6 @@
 // OU1.java
 
+import java.util.*; //import java.util. library. Dont have to write java.util. to use.
 
 class OU1{
     public static void main(String[]args){
