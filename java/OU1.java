@@ -9,9 +9,6 @@ import static java.lang.System.out;
 
 class OU1{
     public static void main(String[]args){
-/*
-  Hej. Detta är ett test av block-kommentarer.
- */
         System.out.println("Temperaturmatning!");
         System.out.println();
 
