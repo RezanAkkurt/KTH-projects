@@ -1,5 +1,9 @@
 // OU1.java
-
+/*
+Obligatorisk uppgift 1.
+Uppgiften innefattar att skapa ett program där man matar in antal veckor och antal mätningar per vecka. Sedan ska man kunna
+mata in temperaturen för varje mätning för att sedan få ut olika data för varje vecka samt hela mätperioden.
+*/
 import java.util.*; //import java.util. library. Dont have to write java.util. to use.
 
 class OU1{
