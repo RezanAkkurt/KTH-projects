@@ -6,8 +6,6 @@ mata in temperaturen för varje mätning för att sedan få ut olika data för v
 */
 import java.util.*; //import java.util. library. Dont have to write java.util. to use.
 
-// test från bärbara datorn
-
 class OU1{
     public static void main(String[]args){
 
