@@ -110,7 +110,7 @@ class OU1{
 
 
     // Räkna ut medeltemperaturen av alla mätningar under mämatperioden
-    double medTemp;
+    double medTemp = 0;
     double sumMedTemp = medT[1];
     for(int vecka = 2; vecka < medT.length; vecka++){
       sumMedTemp = sumMedTemp + medT[vecka];
@@ -118,7 +118,7 @@ class OU1{
     medTemp = sumMedTemp/antalVeckor;
     System.out.println("Medeltemperaturen under hela matperioder ar: " + medTemp);
 
-    }
+  }
 
 
 }
