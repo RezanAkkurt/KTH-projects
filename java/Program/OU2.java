@@ -6,3 +6,8 @@ class OU2{
     System.out.println("Test");
   }
 }
+
+//hämta gitignore filen genom pull
+//Stäng av atom
+//i cmd i aktuell projectfil tar du bort class filerna genom att skriva git rm --cached OU1.class och sen
+// git rm --cached OU2.class
