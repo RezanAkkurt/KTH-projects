@@ -3,12 +3,15 @@
 
 class OU2{
   public static void main(String[]args){
+    // Skapar inmatningsobjekt av typen Scanner
     java.util.Scanner    in = new java.util.Scanner(System.in);
     in.useLocale(java.util.Locale.US);
+    // Skapar variabler som motsvarar sidorna av en triangel
     double a = 0;
     double b = 0;
     double c = 0;
 
+    // while-loop för att kontrollera att inmatningen av triangelns sidor skapar en giltig triangel
     boolean giltigTriangel = false;
     while(giltigTriangel == false){
 

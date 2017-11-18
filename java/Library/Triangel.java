@@ -14,4 +14,21 @@ public class Triangel{
     double hojd_a = (2/a)*Math.sqrt(s*(s-a)*(s-b)*(s-c));
     return hojd_a;
   }
+  public static double bisektris(double b, double c, double alfa){
+    double p = 2 * b * c * Math.cos(alfa/2);
+    double bis = p / (b + c);
+    return bis;
+  }
+  public static double omskrivenCirkel(double a, double b, double c){
+    double t = a * b * c;
+    double s = Triangel.semiperimeter(a, b, c);
+    double radie = t / (4 * Math.sqrt(s*(s - a)*(s - b)*(s - c)));
+    return radie;
+  }
+  public static double inskrivenCirkel(double a, double b, double c){
+    double s = Triangel.semiperimeter(a, b, c);
+    double t = ((s - a)*(s - b)*(s - c))/s;
+    double radie = Math.sqrt(t);
+    return radie;
+  }
 }
