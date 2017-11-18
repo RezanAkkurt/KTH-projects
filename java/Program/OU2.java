@@ -9,14 +9,24 @@ class OU2{
     double b = 0;
     double c = 0;
 
-    int giltigTriangel = 0;
-    while(giltigTriangel == 0){
+    boolean giltigTriangel = false;
+    while(giltigTriangel == false){
 
-      System.out.println("Mata in triangelns tre langder (cm):");
-      System.out.println();
-
+      System.out.println("Mata in sida a:s langd (cm):");
       a = in.nextDouble();
+
+      if(in.hasNextLine()){ // Metod som förhindrar att ifall man matar in för många temperaturer en vecka så lagras de i nästa vecka.
+        in.nextLine();
+      }
+
+      System.out.println("Mata in sida b:s langd (cm):");
       b = in.nextDouble();
+
+      if(in.hasNextLine()){ // Metod som förhindrar att ifall man matar in för många temperaturer en vecka så lagras de i nästa vecka.
+        in.nextLine();
+      }
+
+      System.out.println("Mata in sida c:s langd (cm):");
       c = in.nextDouble();
 
       if(in.hasNextLine()){ // Metod som förhindrar att ifall man matar in för många temperaturer en vecka så lagras de i nästa vecka.
@@ -31,18 +41,20 @@ class OU2{
       if((a+b)>c && (b+c)>a && (a+c)>b){
         System.out.println("Inmatade langder skapar en giltig triangel!");
         System.out.println();
-        giltigTriangel = 1;
+        giltigTriangel = true;
       }
       else{
         System.out.println("Inmatade langder skapar inte en giltig triangel!");
         System.out.println("Programmet startas om.");
         System.out.println();
-        giltigTriangel = 0;
       }
     }
 
     System.out.println("Vi ar utanfor loopen!");
-    System.out.println("Triangelns langder ar: " + a + " cm " + b + " cm " + c + " cm");
+    System.out.println("Langden a ar: " + a + " cm");
+    System.out.println("Langden b ar: " + b + " cm");
+    System.out.println("Langden c ar: " + c + " cm");
+    System.out.println();
 
   }
 }
