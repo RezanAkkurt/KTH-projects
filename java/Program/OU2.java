@@ -1,6 +1,9 @@
 // OU2.java
 // Detta program motsvarar programmet EnTriangelOchDessCirklar i uppgiften
 
+import Library.Triangel;
+import java.util.Scanner;
+
 class OU2{
   public static void main(String[]args){
     // Skapar inmatningsobjekt av typen Scanner
@@ -59,7 +62,11 @@ class OU2{
     System.out.println("Langden c ar: " + c + " cm");
     System.out.println();
 
-    double radieAvInskrivenCirkel;
+    double radieAvOmskrivenCirkel = Triangel.omskrivenCirkel(a, b, c);
+    double radieAvInskrivenCirkel = Triangel.inskrivenCirkel(a, b, c);
+
+    System.out.println("Den omskrivna cirkelns radie ar: " + radieAvOmskrivenCirkel);
+    System.out.println("Den inskrivna cirkelns radie ar: " + radieAvInskrivenCirkel);
 
   }
 }
