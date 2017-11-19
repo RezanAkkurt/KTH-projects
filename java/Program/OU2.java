@@ -59,5 +59,7 @@ class OU2{
     System.out.println("Langden c ar: " + c + " cm");
     System.out.println();
 
+    double radieAvInskrivenCirkel;
+
   }
 }
