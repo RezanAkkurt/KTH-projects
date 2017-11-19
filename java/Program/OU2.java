@@ -1,7 +1,7 @@
 // OU2.java
 // Detta program motsvarar programmet EnTriangelOchDessCirklar i uppgiften
 
-import Library.Matematik.Triangel;
+import library.matematik.Triangel;
 
 class OU2{
   public static void main(String[]args){
