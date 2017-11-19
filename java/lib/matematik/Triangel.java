@@ -11,7 +11,7 @@ public class Triangel{
     return area;
   }
   public static double semiperimeter(double a, double b, double c){
-    double s = (1/2)*(Triangel.omkrets(a, b, c));
+    double s = (1.0/2.0)*(Triangel.omkrets(a, b, c));
     return s;
   }
   public static double hojd_a(double a, double b, double c){

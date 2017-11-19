@@ -67,5 +67,6 @@ class OU2{
     System.out.println("Den omskrivna cirkelns radie ar: " + radieAvOmskrivenCirkel);
     System.out.println("Den inskrivna cirkelns radie ar: " + radieAvInskrivenCirkel);
 
+    //System.out.println("Den omskrivna cirkelns radie ar: " + Triangel.omskrivenCirkel(a, b, c));
   }
 }
