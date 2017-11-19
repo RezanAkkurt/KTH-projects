@@ -1,6 +1,6 @@
 // Triangel.java
 //
-package library.matematik;
+package lib.matematik;
 
 public class Triangel{
   public static double omkrets(double a, double b, double c){
