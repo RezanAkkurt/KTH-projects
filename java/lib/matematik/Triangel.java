@@ -19,6 +19,11 @@ public class Triangel{
     double hojd_a = (2/a)*Math.sqrt(s*(s-a)*(s-b)*(s-c));
     return hojd_a;
   }
+  public static double median(double a, double b, double c){
+    double t = (2*Math.pow(b, 2) + 2*Math.pow(c, 2) - Math.pow(a, 2))/4;
+    double median = Math.sqrt(t);
+    return median;
+  }
   public static double bisektris(double b, double c, double alfa){
     double p = 2 * b * c * Math.cos(alfa/2);
     double bis = p / (b + c);

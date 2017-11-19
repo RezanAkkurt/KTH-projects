@@ -8,6 +8,7 @@ class OU2{
     // Skapar inmatningsobjekt av typen Scanner
     java.util.Scanner    in = new java.util.Scanner(System.in);
     in.useLocale(java.util.Locale.US);
+
     // Skapar variabler som motsvarar sidorna av en triangel
     double a = 0;
     double b = 0;
@@ -38,11 +39,6 @@ class OU2{
         in.nextLine();
       }
 
-      System.out.println("Langden a ar: " + a + " cm");
-      System.out.println("Langden b ar: " + b + " cm");
-      System.out.println("Langden c ar: " + c + " cm");
-      System.out.println();
-
       if((a+b)>c && (b+c)>a && (a+c)>b){
         System.out.println("Inmatade langder skapar en giltig triangel!");
         System.out.println();
@@ -55,14 +51,13 @@ class OU2{
       }
     }
 
-    System.out.println("Vi ar utanfor loopen!");
+    double radieAvOmskrivenCirkel = Triangel.omskrivenCirkel(a, b, c);
+    double radieAvInskrivenCirkel = Triangel.inskrivenCirkel(a, b, c);
+
     System.out.println("Langden a ar: " + a + " cm");
     System.out.println("Langden b ar: " + b + " cm");
     System.out.println("Langden c ar: " + c + " cm");
     System.out.println();
-
-    double radieAvOmskrivenCirkel = Triangel.omskrivenCirkel(a, b, c);
-    double radieAvInskrivenCirkel = Triangel.inskrivenCirkel(a, b, c);
 
     System.out.println("Den omskrivna cirkelns radie ar: " + radieAvOmskrivenCirkel);
     System.out.println("Den inskrivna cirkelns radie ar: " + radieAvInskrivenCirkel);

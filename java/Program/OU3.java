@@ -6,5 +6,7 @@ public class OU3{
     int k = in.nextInt();
 
     System.out.println("Inmatat heltal = " + k);
+    System.out.println("test : " + Math.pow(k, 2));
+
   }
 }
