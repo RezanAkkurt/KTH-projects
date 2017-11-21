@@ -29,7 +29,7 @@ public class Triangel{
     return hojd_a;
   }
 
-  // Metoden tar emot triangelns tre längder och returnerar dess median.
+  // Metoden tar emot triangelns tre längder och returnerar motsvarande median.
   public static double median(double a, double b, double c){
     double    t = (2 * Math.pow(b, 2) + 2 * Math.pow(c, 2) - Math.pow(a, 2)) / 4;
     double    median = Math.sqrt(t);
