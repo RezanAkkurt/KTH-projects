@@ -10,7 +10,7 @@ package lib.algoritmer;
 public class DenKortasteVagen{
   public static int[] mellanstationer(double a[], double b[][], double c[]){
 
-    double langd = 0; // Variabel langd som representerar den totala längden mellan X och Y vid varje genomfart.
+    //double langd = 0; // Variabel langd som representerar den totala längden mellan X och Y vid varje genomfart.
     double kortasteVagen = a[0] + b[0][0] + c[0]; // Variabel kortasteVagen som inledningsvis anses vara genom U1 sen V1.
     int[] mellanstationer = new int[2]; // En endimensionell vektor med plats för två element. I dessa platser ska vilka stationer som leder till den kortaste vägen lagras.
 
