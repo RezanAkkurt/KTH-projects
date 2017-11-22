@@ -9,16 +9,36 @@ package lib.algoritmer;
 
 public class DenKortasteVagen{
   public static int[] mellanstationer(double a[], double b[][], double c[]){
-    double langd = 0;
-    double kortasteVagen = a[1] + b[1][1] + c[1];
-    int[] mellanstationer = new int[3];
 
-    /*
-    Skapa en for-loop(j) som går igenom och sedan en inre for-loop (j) och adderar alla
-    längder och if kortasteVagen > a[i] + b[i][j] + c[i](
-    så uppdatera mellanstationer[1] = i och mellanstationer[2] = j;
-    )
-     */
+    double langd = 0; // Variabel langd som representerar den totala längden mellan X och Y vid varje genomfart.
+    double kortasteVagen = a[0] + b[0][0] + c[0]; // Variabel kortasteVagen som inledningsvis anses vara genom U1 sen V1.
+    int[] mellanstationer = new int[2]; // En endimensionell vektor med plats för två element. I dessa platser ska vilka stationer som leder till den kortaste vägen lagras.
+
+    for(int i = 0; i < a.length; i++){
+      for (int j = 0; j < b[i].length; j++){
+        if(a[i] + b[i][j] + c[j] < kortasteVagen){
+          kortasteVagen = a[i] + b[i][j] + c[j];
+          mellanstationer[0] = i;
+          mellanstationer[1] = j;
+        }
+      }
+    }
+
     return mellanstationer;
+  }
+
+  public static double langd(double a[], double b[][], double c[]){
+    double langd = a[0] + b[0][0] + c[0];
+    //double kortasteVagen = a[0] + b[0][0] + c[0];
+
+    for(int i = 1; i < a.length; i++){
+      for(int j = 1; j < b[i].length; j++){
+        if(a[i] + b[i][j] + c[j] < langd){
+          langd = a[i] + b[i][j] + c[j];
+        }
+      }
+    }
+
+    return langd;
   }
 }

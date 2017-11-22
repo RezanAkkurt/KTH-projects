@@ -22,15 +22,65 @@ c[V] = längderna mellan mellanstationerna V och Y.
 
 public class OU3{
   public static void main(String[] args){
+    // Skapar ett inmatningsverktyg
     java.util.Scanner in = new java.util.Scanner(System.in);
+    in.useLocale(java.util.Locale.US);
 
-    int mellanstationerZon2;
-    double[] a = new double[mellanstationerZon2];
-
-    for(int i = 1; i <= a.length; i++){
-      System.out.println("Mata in langden mellan X och U" + i);
-      a[i] = in.nextDouble();
+    // Mata in antalet mellanstationer i Zon2 och Zon3
+    System.out.println("Mata in antalet mellanstationer i Zon2");
+    int mellanstationerZon2 =  in.nextInt();
+    if(in.hasNextLine()){
+      in.nextLine();
+    }
+    System.out.println("Mata in antalet mellanstationer i Zon3");
+    int mellanstationerZon3 = in.nextInt();
+    if(in.hasNextLine()){
+      in.nextLine();
     }
 
+    // Skapa tre arrayer som ska innehålla alla vaglangder. Arrayernas storlek beror på antalet mellanstationer i Zon2 och Zon3.
+    double[] a = new double[mellanstationerZon2]; // Arrayen ska innehålla väglängderna mellan X och respektive mellanstation i Zon2
+    double[][] b = new double[mellanstationerZon2][mellanstationerZon3]; // Arrayen ska innehålla väglängderna mellan respektive mellanstationer i Zon2 och Zon3
+    double[] c = new double[mellanstationerZon3]; // Arrayen ska innehålla väglängderna mellan respektive mellanstationer i Zon3 och Y
+
+    // Användaren matar in vaglangderna mellan stationerna.
+    for(int i = 0; i < a.length; i++){
+      System.out.println("Mata in langden mellan X och U" + (i+1));
+      a[i] = in.nextDouble();
+      if(in.hasNextLine()){
+        in.nextLine();
+      }
+    }
+
+
+    for(int i = 0; i < b.length; i++){
+      System.out.println("Mata in langderna mellan stationerna U" + (i+1) + " och V1-" + mellanstationerZon3 + " (dvs totalt " + mellanstationerZon3 + " vaglangder ska matas in)");
+      for(int j = 0; j < b[i].length; j++){
+        b[i][j] = in.nextDouble();
+      }
+      if(in.hasNextLine()){
+        in.nextLine();
+      }
+    }
+
+    for (int j = 0; j < c.length; j++){
+      System.out.println("Mata in vaglangderna mellan V" + (j+1) + " och Y");
+      c[j] = in.nextDouble();
+      if(in.hasNextLine()){
+        in.nextLine();
+      }
+    }
+
+
+    // Skapar en array som ska innehålla vilka mellanstationer som innefattar den kortaste vägen mellan X och Y.
+    // Innehållet i arrayen returneras från vår metod i classen DenKortasteVagen. Denna metoden
+    // använder sig av en algoritm för att beräkna den kortaste vägen och returnerar vilka stationer det är.
+    int[] mellanstationer = lib.algoritmer.DenKortasteVagen.mellanstationer(a, b, c);
+    double langd = lib.algoritmer.DenKortasteVagen.langd(a, b, c);
+
+    // Utmatning av vilka stationer som leder till den kortaste vägen. Notera att programmet lägger till +1
+    System.out.println("Den kortaste vagen gar igenom U" + (mellanstationer[0]+1) + " och V" + (mellanstationer[1]+1));
+    System.out.println("Den kortaste vagen ar " + langd + "m lang");
   }
+
 }
