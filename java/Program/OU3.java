@@ -76,7 +76,7 @@ public class OU3{
 
     // Användaren matar in vaglangderna mellan stationerna.
     for(int i = 0; i < a.length; i++){
-      System.out.println("Mata in langden mellan X och U" + (i+1));
+      System.out.println("Mata in langden (m) mellan X och U" + (i+1));
       a[i] = in.nextDouble();
       if(in.hasNextLine()){
         in.nextLine();
@@ -85,7 +85,7 @@ public class OU3{
 
 
     for(int i = 0; i < b.length; i++){
-      System.out.println("Mata in langderna mellan stationerna U" + (i+1) + " och V1-" + mellanstationerZon3 + " (dvs totalt " + mellanstationerZon3 + " vaglangder ska matas in)");
+      System.out.println("Mata in langderna (m) mellan stationerna U" + (i+1) + " och V1-" + mellanstationerZon3 + " (totalt " + mellanstationerZon3 + " vaglangder ska matas in)");
       for(int j = 0; j < b[i].length; j++){
         b[i][j] = in.nextDouble();
       }
@@ -95,7 +95,7 @@ public class OU3{
     }
 
     for (int j = 0; j < c.length; j++){
-      System.out.println("Mata in vaglangderna mellan V" + (j+1) + " och Y");
+      System.out.println("Mata in vaglangderna (m) mellan V" + (j+1) + " och Y");
       c[j] = in.nextDouble();
       if(in.hasNextLine()){
         in.nextLine();
