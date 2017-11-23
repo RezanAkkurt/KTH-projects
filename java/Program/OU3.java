@@ -32,6 +32,10 @@ Sedan fortsätter vi jämförelse och då provar från U2 och respektive station
 På samma sätt uppdaterar vi variabeln och lagrar stationernas i en array om vi hittar
 en kortare väg.
 
+På grund av problemets konstruktion så vet vi vilka tre vägar genom zonerna som
+leder till den kortaste vägen när vi vet vilka två stationer som krävs för den kortaste
+vägen.
+
 STEG I ALGORITMEN - PSEUDOKOD
 mellanstationer(double a[], double b[][], double c[]){
   denKortasteVagen = första kombinationen av vägar
