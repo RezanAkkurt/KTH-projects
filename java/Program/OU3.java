@@ -13,10 +13,11 @@ Från varje station i Zon3 finns det en väg till stationen Y.
 FÖRVILLKOR
 Förvillkoren som måste vara sanna för att användningen av algoritmen ska fungera
 är att det får bara finnas fyra zoner. I Zon1 och Zon4 får det bara finnas en station.
-I Zon2 och Zon3 får det finnas ett godtyckligt antal stationer men alla stationer i
-de två zonerna måste ha vägförbindelser sinsemellan. Det får inte heller finnas direkta
-vägar från Zon1 till Zon3 eller Zon4 utan från Zon1 så måste man åka till Zon2, sen Zon3
-för att slutligen nå Zon4 (Y).
+I Zon2 och Zon3 får det finnas ett godtyckligt antal stationer och varje station i Zon2 har förbindelser till
+varje station i Zon3. Det får inte heller finnas direkta vägar från Zon1 till Zon3 eller Zon4 utan
+från Zon1 så måste man åka till Zon2, sen Zon3 för att slutligen nå Zon4 (Y) och tvärtom.
+
+Avstånden mellan stationerna måste vara givna.
 
 EFTERVILLKOR
 Den kortaste vägen mellan stationerna X och Y har fastställts.
