@@ -31,8 +31,8 @@ public class DenKortasteVagen{
     double langd = a[0] + b[0][0] + c[0];
     //double kortasteVagen = a[0] + b[0][0] + c[0];
 
-    for(int i = 1; i < a.length; i++){
-      for(int j = 1; j < b[i].length; j++){
+    for(int i = 0; i < a.length; i++){
+      for(int j = 0; j < b[i].length; j++){
         if(a[i] + b[i][j] + c[j] < langd){
           langd = a[i] + b[i][j] + c[j];
         }
