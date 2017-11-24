@@ -29,7 +29,7 @@ således tilldelar vi vår variabel värdet (avståndet) av vägen mellan X och 
 Sedan jämför vi vår kortaste väg genom att först gå via U1 och respektive station i Zon3 (Vn).
 Om vi någon gång hittar en kortare väg så uppdateras vår variabel och tilldelas denna kortare väg samtidigt
 som vi i en array lagrar vilka stationer det var som ledde till denna kortare väg.
-Sedan fortsätter vi jämförelse och då provar från U2 och respektive station i Zon3 (Vn).
+Sedan fortsätter vi jämförelsen och då provar från U2 och respektive station i Zon3 (Vn).
 På samma sätt uppdaterar vi variabeln och lagrar stationernas i en array om vi hittar
 en kortare väg.
 
