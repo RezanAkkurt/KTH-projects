@@ -78,6 +78,7 @@ public class OU3{
     double[] a = new double[mellanstationerZon2]; // Arrayen ska innehålla väglängderna mellan X och respektive mellanstation i Zon2
     double[][] b = new double[mellanstationerZon2][mellanstationerZon3]; // Arrayen ska innehålla väglängderna mellan respektive mellanstationer i Zon2 och Zon3
     double[] c = new double[mellanstationerZon3]; // Arrayen ska innehålla väglängderna mellan respektive mellanstationer i Zon3 och Y
+    // Väglängderna definieras utifrån vilka stationer de går igenom i Zon2 och Zon3
 
     // Användaren matar in vaglangderna mellan stationerna.
     for(int i = 0; i < a.length; i++){
