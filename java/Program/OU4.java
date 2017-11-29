@@ -15,8 +15,17 @@ och bestämmer siffrorna i resultatet, en siffra i taget.
 På så sätt skapas en ny teckensträng, som representerar resultatet av operationen.
 
 *******************************************************************************/
+import lib.matematik.*;
+
 public class OU4{
   public static void main(String[]args){
     // Inmatning av heltal som strings.
+    java.util.Scanner in = new java.util.Scanner(System.in);
+    in.useLocale(java.util.Locale.US);
+
+    System.out.println("INSERT YOUR WHOLE NUMBERS!");
+    String number1 = in.next();
+    String number2 = in.next();
+
   }
 }
