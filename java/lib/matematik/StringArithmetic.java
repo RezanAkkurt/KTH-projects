@@ -18,6 +18,7 @@ public class StringArithmetic{
 
   public static void show (String tal1, String tal2, String resultat, char operator){
 
+
   }
 
   public static String sattLen (String s, int antal){

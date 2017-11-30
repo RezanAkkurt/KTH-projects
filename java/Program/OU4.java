@@ -23,9 +23,9 @@ public class OU4{
     java.util.Scanner in = new java.util.Scanner(System.in);
     in.useLocale(java.util.Locale.US);
 
-    System.out.println("INSERT YOUR WHOLE NUMBERS!");
+    System.out.println("INSERT TWO WHOLE NUMBERS!");
     String number1 = in.next();
     String number2 = in.next();
-
+    in.nextLine();
   }
 }
