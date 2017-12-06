@@ -12,7 +12,10 @@ public class StringArithmetic{
     StringBuilder sb1 = new StringBuilder(tal1); //tal1
     StringBuilder sb2 = new StringBuilder(tal2); //tal2
     StringBuilder sb3 = new StringBuilder(); // resultatet av additionen
-
+    int maxLength = Math.max(sb1.length(), sb2.length());
+    for(int i = maxLength; i >= maxLength; i--){
+      
+    }
     return sb3.toString();
   }
 
