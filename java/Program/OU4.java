@@ -27,11 +27,17 @@ public class OU4{
     String number1 = in.next();
     String number2 = in.next();
     in.nextLine();
-    System.out.println(); // rom rad
-
+    System.out.println(); // Tom rad
+    System.out.println(number1);
+    System.out.println(number2);
+    System.out.println();
     // addera heltalen och visa resultatet
-    String summa = StringArithmetic.add (number1, number2);
-    StringArithmetic.show (number1, number2, summa, '+');
+    String summa = StringArithmetic.add(number1, number2);
+    StringArithmetic.show(number1, number2, summa, '+');
+    String diff = StringArithmetic.sub(number1, number2);
+    System.out.println();
+    StringArithmetic.show(number1, number2, diff, '-');
+    // StringArithmetic.show (number1, number2, summa, '+');
 
     // subtrahera heltalen och visa resultatet
     // koden här

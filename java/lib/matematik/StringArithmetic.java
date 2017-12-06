@@ -8,20 +8,180 @@ package lib.matematik;
 
 public class StringArithmetic{
 
+/*
   public static String add (String tal1, String tal2){
-    StringBuilder sb1 = new StringBuilder(tal1); //tal1
-    StringBuilder sb2 = new StringBuilder(tal2); //tal2
-    StringBuilder sb3 = new StringBuilder(); // resultatet av additionen
-    int maxLength = Math.max(sb1.length(), sb2.length());
-    for(int i = maxLength; i >= maxLength; i--){
-
+    StringBuilder result = new StringBuilder();
+    int carry = 0;
+    int i;
+    int sum = 0;
+    if (tal1.length() > tal2.length()){
+      i = tal1.length();
+      tal2 = sattLen(tal2, tal1.length() - tal2.length());
     }
-    return sb3.toString();
+    else{
+      i = tal2.length();
+      tal1 = sattLen(tal1, tal2.length() - tal1.length());
+    }
+    for(int j = i - 1; j >= 0; j--){
+      int number1 = Character.getNumericValue(tal1.charAt(j));
+      int number2 = Character.getNumericValue(tal2.charAt(j));
+      sum = carry + number1 + number2;
+      if (sum >= 10){
+        carry = 1;
+        sum = sum - 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, sum);
+    }
+    if(carry == 1){
+      result.insert(0, carry);
+    }
+    return result.toString();
   }
 
-//  public static String div (String tal1, String tal2){
+  public static String add1 (String tal1, String tal2){
+    StringBuilder result = new StringBuilder();
+    int carry = 0;
+    int i;
+    int sum = 0;
+    if (tal1.length() > tal2.length()){
+      i = tal1.length();
+    // tal2 = sattLen(tal2, tal1.length() - tal2.length());
+    }
+    else{
+      i = tal2.length();
+      // tal1 = sattLen(tal1, tal2.length() - tal1.length());
+    }
+    for (int j = i - 1; j >= 0; j--){
+      int number1 = tal1.charAt(j) - '0';
+      int number2 = tal2.charAt(j) - '0';
+      sum = carry + number1 + number2;
+      if(sum >= 10){
+        carry = 1;
+        sum = sum - 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, sum);
+    }
+    if(carry == 1){
+      result.insert(0, carry);
+    }
+    return result.toString();
+  }
+*/
+  public static String add (String tal1, String tal2){
+    StringBuilder result = new StringBuilder();
+    int sum = 0;
+    int carry = 0;
+    int pos1 = tal1.length() - 1;
+    int pos2 = tal2.length() - 1;
 
-//  }
+    while(pos1 >= 0 && pos2 >= 0){
+      int number1 = tal1.charAt(pos1) - 48;
+      int number2 = tal2.charAt(pos2) - 48;
+      sum = carry + number1 + number2;
+      if(sum >= 10){
+        carry = 1;
+        sum = sum - 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, sum);
+      pos1--;
+      pos2--;
+    }
+
+    while(pos1 >= 0){
+      int number1 = tal1.charAt(pos1) - 48;
+      sum = carry + number1;
+      if(sum >= 10){
+        carry = 1;
+        sum = sum - 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, sum);
+      pos1--;
+    }
+
+    while(pos2 >= 0){
+      int number2 = tal2.charAt(pos2) - 48;
+      sum = carry + number2;
+      if(sum >= 10){
+        carry = 1;
+        sum = sum - 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, sum);
+      pos2--;
+    }
+
+    return result.toString();
+  }
+
+  public static String sub (String tal1, String tal2){
+    StringBuilder result = new StringBuilder();
+    int diff = 0;
+    int carry = 0;
+    int pos1 = tal1.length() - 1;
+    int pos2 = tal2.length() - 1;
+
+    while(pos1 >= 0 && pos2 >= 0){
+      int number1 = tal1.charAt(pos1) - 48;
+      int number2 = tal2.charAt(pos2) - 48;
+      diff = carry + number1 - number2;
+      if(diff < 0){
+        carry = -1;
+        diff = diff + 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, diff);
+      pos1--;
+      pos2--;
+    }
+
+    while(pos1 >= 0){
+      int number1 = tal1.charAt(pos1) - 48;
+      diff = carry + number1;
+      if(diff < 0){
+        carry = -1;
+        diff = diff + 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, diff);
+      pos1--;
+    }
+
+    while(pos2 >= 0){
+      int number2 = tal2.charAt(pos2) - 48;
+      diff = carry + number2;
+      if(diff < 0){
+        carry = -1;
+        diff = diff + 10;
+      }
+      else{
+        carry = 0;
+      }
+      result.insert(0, diff);
+      pos2--;
+    }
+
+    return result.toString();
+  }
+
+
 
   // show visar två givna naturliga heltal, och resultatet av en aritmetisk operation
   // utförd i samband med hetalen
@@ -36,13 +196,13 @@ public class StringArithmetic{
     tal2 = sattLen (tal2, maxLen - len2);
     resultat = sattLen (resultat, maxLen - len);
     // visa heltalen och resultatet
-    System.out.println (" " + tal1);
+    System.out.println ("  " + tal1);
     System.out.println ("" + operator + " " + tal2);
     for (int i = 0; i < maxLen + 2; i++){
       System.out.print ("-");
     }
     System.out.println ();
-    System.out.println (" " + resultat + "\n");
+    System.out.println ("  " + resultat + "\n");
   }
 
   public static String sattLen (String s, int antal){
