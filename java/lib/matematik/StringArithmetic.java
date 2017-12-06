@@ -14,7 +14,7 @@ public class StringArithmetic{
     StringBuilder sb3 = new StringBuilder(); // resultatet av additionen
     int maxLength = Math.max(sb1.length(), sb2.length());
     for(int i = maxLength; i >= maxLength; i--){
-      
+
     }
     return sb3.toString();
   }
