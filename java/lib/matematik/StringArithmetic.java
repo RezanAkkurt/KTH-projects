@@ -2,6 +2,8 @@
 
 /*
 Contains class and methods to use when doing arithmetic operations using strings.
+
+Can also instead use bigInt class in standard library
  */
 
 package lib.matematik;
@@ -40,39 +42,9 @@ public class StringArithmetic{
     }
     return result.toString();
   }
-
-  public static String add1 (String tal1, String tal2){
-    StringBuilder result = new StringBuilder();
-    int carry = 0;
-    int i;
-    int sum = 0;
-    if (tal1.length() > tal2.length()){
-      i = tal1.length();
-    // tal2 = sattLen(tal2, tal1.length() - tal2.length());
-    }
-    else{
-      i = tal2.length();
-      // tal1 = sattLen(tal1, tal2.length() - tal1.length());
-    }
-    for (int j = i - 1; j >= 0; j--){
-      int number1 = tal1.charAt(j) - '0';
-      int number2 = tal2.charAt(j) - '0';
-      sum = carry + number1 + number2;
-      if(sum >= 10){
-        carry = 1;
-        sum = sum - 10;
-      }
-      else{
-        carry = 0;
-      }
-      result.insert(0, sum);
-    }
-    if(carry == 1){
-      result.insert(0, carry);
-    }
-    return result.toString();
-  }
 */
+
+  // Add number1 to number2
   public static String add (String tal1, String tal2){
     StringBuilder result = new StringBuilder();
     int sum = 0;
@@ -127,6 +99,7 @@ public class StringArithmetic{
     return result.toString();
   }
 
+  // Subtract number1 from number2 - requires number1 to be larger than number2
   public static String sub (String tal1, String tal2){
     StringBuilder result = new StringBuilder();
     int diff = 0;
@@ -164,6 +137,8 @@ public class StringArithmetic{
       pos1--;
     }
 
+
+/*
     while(pos2 >= 0){
       int number2 = tal2.charAt(pos2) - 48;
       diff = carry + number2;
@@ -178,6 +153,7 @@ public class StringArithmetic{
       pos2--;
     }
 
+*/
     return result.toString();
   }
 

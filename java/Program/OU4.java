@@ -34,12 +34,12 @@ public class OU4{
     // addera heltalen och visa resultatet
     String summa = StringArithmetic.add(number1, number2);
     StringArithmetic.show(number1, number2, summa, '+');
+    // subtrahera heltalen och visa resultatet
     String diff = StringArithmetic.sub(number1, number2);
     System.out.println();
-    StringArithmetic.show(number1, number2, diff, '-');
     // StringArithmetic.show (number1, number2, summa, '+');
+    StringArithmetic.show(number1, number2, diff, '-');
 
-    // subtrahera heltalen och visa resultatet
     // koden här
   }
 }
