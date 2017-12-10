@@ -5,7 +5,10 @@ class PunktTest{
   public static void main (String[] args){
 
     PrintWriter out = new PrintWriter (System.out, true);
+    java.util.Scanner    in = new java.util.Scanner(System.in);
+    in.useLocale(java.util.Locale.US);
 
+/*
     // testa en konstruktor och en transformator
     Punkt p1 = new Punkt ("A", 3, 4);
     Punkt p2 = new Punkt ("B", 5, 6);
@@ -37,6 +40,23 @@ class PunktTest{
     out.println ("p1 = " + p1);
     out.println ("p2 = " + p2);
     out.println ("Is p1 equal to p (true/false) = " + p1.equals(p));
+*/
+    System.out.println("How many points in polyline?");
+    System.out.println("Insert whole number: ");
+    int antalPunkter = in.nextInt();
+    Punkt[] punkter = new Punkt[antalPunkter];
+
+    for(int i = 0; i <= antalPunkter-1; i++){
+      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1));
+      String namn = in.next();
+      int xKoordinat = in.nextInt();
+      int yKoordinat = in.nextInt();
+      in.nextLine();
+      punkter[i] = new Punkt(namn, xKoordinat, yKoordinat);
+    }
+    for (int i = 0; i <= antalPunkter-1; i++) {
+      System.out.println("Inmatade punkter: " + punkter[i]);
+    }
 
   }
 
