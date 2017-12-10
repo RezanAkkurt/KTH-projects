@@ -45,6 +45,7 @@ class PunktTest{
     System.out.println("Insert whole number: ");
     int antalPunkter = in.nextInt();
     Punkt[] punkter = new Punkt[antalPunkter];
+
     for(int i = 0; i <= antalPunkter-1; i++){
       System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1));
       String namn = in.next();
@@ -53,12 +54,24 @@ class PunktTest{
       in.nextLine();
       punkter[i] = new Punkt(namn, xKoordinat, yKoordinat);
     }
+
     for (int i = 0; i <= antalPunkter-1; i++) {
       System.out.println("Inmatade punkter: " + punkter[i]);
     }
 
     Polylinje p1 = new Polylinje(punkter);
     System.out.println("Polylinje:");
+    System.out.println(p1);
+
+    // Kopiera punkterna i en polylinje -> ändra X-värdet i första punkten och sedan skriv ut den punkten.
+    Punkt[] copyPunkter = p1.getHorn();
+    copyPunkter[0].setX(12);
+    System.out.println(copyPunkter[0]);
+    System.out.println();
+
+    //Skapar ny punkt som ska läggas till i slutet av en  redan skapad Polylinje.
+    Punkt test = new Punkt("K", 1, 20);
+    p1.laggTill(test);
     System.out.println(p1);
   }
 
