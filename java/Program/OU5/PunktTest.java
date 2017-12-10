@@ -45,9 +45,8 @@ class PunktTest{
     System.out.println("Insert whole number: ");
     int antalPunkter = in.nextInt();
     Punkt[] punkter = new Punkt[antalPunkter];
-
     for(int i = 0; i <= antalPunkter-1; i++){
-      System.out.println("Mata in namn och koordinater pa punkt nr. (t.ex. A 3 4) " + (i+1));
+      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1));
       String namn = in.next();
       int xKoordinat = in.nextInt();
       int yKoordinat = in.nextInt();
