@@ -57,6 +57,9 @@ class PunktTest{
       System.out.println("Inmatade punkter: " + punkter[i]);
     }
 
+    Polylinje p1 = new Polylinje(punkter);
+    System.out.println("Polylinje:");
+    System.out.println(p1);
   }
 
 }

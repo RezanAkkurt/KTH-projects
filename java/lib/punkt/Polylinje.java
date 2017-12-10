@@ -22,8 +22,9 @@ givna hörnet så småningom förs in på rätt ställe i den aktuella polylinje
 Är den tidseffektiv? Vad händer om man ofta lägger till eller tar bort hörn?
 
 */
+package lib.punkt;
 
-public class Polylinje {
+public class Polylinje{
   private Punkt[] horn;
   private String farg = "svart";
   private int bredd = 1;
@@ -39,19 +40,28 @@ public class Polylinje {
     }
   }
 
-  public String toString () {}
+  public String toString () {
+    StringBuilder s = new StringBuilder();
+    s.append("(");
+    for(int i = 0; i <= horn.length-1; i++){
+      s.append(this.horn[i] + ", ");
+    }
+    s.append("farg = " + this.farg + ", bredd = " + this.bredd + ")");
+    String string = s.toString();
+    return string;
+  }
 
-  public Punkt[] getHorn () {}
+//  public Punkt[] getHorn () {}
 
-  public String getFarg () {}
+//  public String getFarg () {}
 
-  public int getBredd () {}
+//  public int getBredd () {}
 
   public void setFarg (String farg) {}
 
   public void setBredd (int bredd) {}
 
-  public double langd () {}
+//  public double langd () {}
 
   public void laggTill (Punkt horn){
     Punkt[] h = new Punkt[this.horn.length + 1];
