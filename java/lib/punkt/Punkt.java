@@ -20,7 +20,7 @@ public class Punkt{
     koordinater[1] = y;
   }
 
-  // Constructor using another Punkt as arguments
+  // Constructor using another Punkt as argument
   public Punkt(Punkt p){
     namn = p.namn;
     koordinater[0] = p.koordinater[0];

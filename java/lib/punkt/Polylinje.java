@@ -23,6 +23,7 @@ givna hörnet så småningom förs in på rätt ställe i den aktuella polylinje
 
 */
 package lib.punkt;
+import lib.punkt.Punkt;
 
 public class Polylinje{
   // Class fields, ie an object of type Polylinje contains an array of Punkt, string farg and int bredd.
@@ -60,7 +61,11 @@ public class Polylinje{
   public Punkt[] getHorn () {
     Punkt[] copyPunkter = new Punkt[this.horn.length];
     for(int i = 0; i < this.horn.length; i++){
-      copyPunkter[i] = this.horn[i];
+      copyPunkter[i] = new Punkt(this.horn[i]);
+      /* Här används operatorn new och skapas en ny punkt där befintlig punkt i befintlig polylinje skickas till definitionsklassen
+         Punkt. Detta för att kopiera resursen (skapa ett nytt objekt som innehåller samma sak som vårat befintliga objekt)
+         istället för att kopiera referensen.
+      */
     }
     return copyPunkter;
   }
@@ -94,14 +99,29 @@ public class Polylinje{
     Punkt[] h = new Punkt[this.horn.length + 1];
     int i = 0; // Genom att skapa referensen i utanför for-loopen kan dess sista värde användas för att stoppa in nya punkten när for-loopen är klar.
     for (i = 0; i < this.horn.length; i++){
-      h[i] = this.horn[i];
+      h[i] = this.horn[i]; // Här kopieras bara referensen till varje punkt i vår polylinje. Men det spelar ingen roll då vi vill bara ändra nuvarande polylinje, inte return något?
     }
     h[i] = new Punkt (horn);
     this.horn = h;
   }
 
-  public void laggTillFramfor (Punkt horn, String hornNamn) {}
+  public void laggTillFramfor (Punkt horn, String hornNamn) {
+    Punkt[] h = new Punkt[this.horn.length + 1];
+    for(int i = 0; i < this.horn.length; i++){
+      h[i] = this.horn[i];
+      if(hornNamn.equals(this.horn[i].getNamn())){
+        h[i] = new Punkt (horn);
+        while(i < this.horn.length){
+          h[i+1] = this.horn[i];
+          i++;
+        }
+      }
+    }
+    this.horn = h;
+  }
 
-  public void taBort (String hornNamn) {}
+  public void taBort (String hornNamn) {
+    
+  }
 
 }

@@ -1,5 +1,6 @@
 import java.io.*; // PrintWriter
-import lib.punkt.*;
+import lib.punkt.Punkt;
+import lib.punkt.Polylinje;
 
 class PunktTest{
   public static void main (String[] args){
@@ -46,8 +47,8 @@ class PunktTest{
     int antalPunkter = in.nextInt();
     Punkt[] punkter = new Punkt[antalPunkter];
 
-    for(int i = 0; i <= antalPunkter-1; i++){
-      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1));
+    for(int i = 0; i < antalPunkter; i++){
+      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1) + " i polylinjen");
       String namn = in.next();
       int xKoordinat = in.nextInt();
       int yKoordinat = in.nextInt();
@@ -55,8 +56,8 @@ class PunktTest{
       punkter[i] = new Punkt(namn, xKoordinat, yKoordinat);
     }
 
-    for (int i = 0; i <= antalPunkter-1; i++) {
-      System.out.println("Inmatade punkter: " + punkter[i]);
+    for (int i = 0; i < antalPunkter; i++) {
+      System.out.println("Inmatade punkt nr. " + (i+1) + ": " + punkter[i]);
     }
 
     Polylinje p1 = new Polylinje(punkter);
@@ -68,10 +69,19 @@ class PunktTest{
     copyPunkter[0].setX(12);
     System.out.println(copyPunkter[0]);
     System.out.println();
+    System.out.println("p1 = " + p1);
+    System.out.println();
+
 
     //Skapar ny punkt som ska läggas till i slutet av en  redan skapad Polylinje.
     Punkt test = new Punkt("K", 1, 20);
     p1.laggTill(test);
+    System.out.println(p1);
+
+    System.out.println("Framfor vilken punkt vill du stoppa in punkten test?");
+    String framforHornNamn = in.next();
+
+    p1.laggTillFramfor(test, framforHornNamn);
     System.out.println(p1);
   }
 
