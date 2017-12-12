@@ -59,6 +59,10 @@ public class Punkt{
     return b;
   }
 
+  public void setNamn(String namn){
+    this.namn = namn;
+  }
+
   public void setX(int x){
     koordinater[0] = x;
   }
