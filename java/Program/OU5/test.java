@@ -51,7 +51,21 @@ class test {
     Punkt valdPunkt = null;
     char valtChar = 0;
     while (antalValdaHorn < antalHorn) {
-      
+
+      valdPunkt = slumpPunkt(); // Skapa slumpPunkt
+      String namn = valdPunkt.getNamn(); // Lagra slumpPunktens namn som string.
+      valtChar = namn.charAt(0); //Lagrat slumpPunktens namn som char.
+      int valtCharSomInt = (int) valtChar - 65; // Konverterar slumpPunktens namn som int.
+      while(valdaNamn[valtCharSomInt] == true){
+        valdPunkt = slumpPunkt();
+        namn = valdPunkt.getNamn();
+        valtChar = namn.charAt(0);
+        valtCharSomInt = (int) valtChar - 65;
+      }
+      valdaNamn[valtCharSomInt] = true; // Sätter slumpPunktens namn som true i boolean array.
+      polylinje.laggTill(valdPunkt);
+      antalValdaHorn++;
+
     }
 
     // sätt färg
