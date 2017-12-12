@@ -147,7 +147,12 @@ public class Polylinje{
       }
     }
     h[i] = this.horn[i-1];
-    this.horn = h;
+    if(punktHittad == true){
+      this.horn = h;
+    } else {
+      System.out.println("Angiven punkt finns inte i befintlig polylinje!");
+    }
+
   }
 
   public void taBort (String hornNamn) {
