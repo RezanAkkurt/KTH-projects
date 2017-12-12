@@ -42,13 +42,14 @@ class PunktTest{
     out.println ("p2 = " + p2);
     out.println ("Is p1 equal to p (true/false) = " + p1.equals(p));
 */
+    System.out.println();
     System.out.println("How many points in polyline?");
     System.out.println("Insert whole number: ");
     int antalPunkter = in.nextInt();
     Punkt[] punkter = new Punkt[antalPunkter];
 
     for(int i = 0; i < antalPunkter; i++){
-      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1) + " i polylinjen");
+      System.out.println("Mata in namn och koordinater pa punkt nr. " + (i+1) + " av " + antalPunkter + " i polylinjen");
       String namn = in.next();
       int xKoordinat = in.nextInt();
       int yKoordinat = in.nextInt();
@@ -64,6 +65,10 @@ class PunktTest{
     System.out.println("Polylinje:");
     System.out.println(p1);
 
+    System.out.println();
+    System.out.println("Polylinjens langd = " + p1.langd());
+    System.out.println();
+
     // Kopiera punkterna i en polylinje -> ändra X-värdet i första punkten och sedan skriv ut den punkten.
     Punkt[] copyPunkter = p1.getHorn();
     copyPunkter[0].setX(12);
@@ -75,14 +80,22 @@ class PunktTest{
 
     //Skapar ny punkt som ska läggas till i slutet av en  redan skapad Polylinje.
     Punkt test = new Punkt("K", 1, 20);
-    p1.laggTill(test);
-    System.out.println(p1);
+    //p1.laggTill(test);
+    //System.out.println(p1);
+    System.out.println("Ny punkt = " + test.toString());
+    System.out.println();
 
-    System.out.println("Framfor vilken punkt vill du stoppa in punkten test?");
+    System.out.println("Framfor vilken punkt vill du stoppa in punkten " + test.getNamn() + "?");
     String framforHornNamn = in.next();
 
     p1.laggTillFramfor(test, framforHornNamn);
     System.out.println(p1);
+    System.out.println();
+
+    System.out.println("Vilken punkt vill du ta bort?");
+    String taBortPunkt = in.next();
+    p1.taBort(taBortPunkt);
+    System.out.println("p1 = " + p1);
   }
 
 }

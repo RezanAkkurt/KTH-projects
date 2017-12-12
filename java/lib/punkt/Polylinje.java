@@ -90,7 +90,13 @@ public class Polylinje{
     this.bredd = bredd;
   }
 
-//  public double langd () {}
+  public double langd () {
+    double langd = 0;
+    for(int i = 0; i < this.horn.length-1; i++){
+      langd = langd + this.horn[i].avstand(this.horn[i+1]);
+    }
+    return langd;
+  }
 
   // Adds a punkt/horn at the end of the Polylinje.
   // The method copies creates an array with room for one more element and then copies the current array of Punkt
@@ -107,21 +113,51 @@ public class Polylinje{
 
   public void laggTillFramfor (Punkt horn, String hornNamn) {
     Punkt[] h = new Punkt[this.horn.length + 1];
+    boolean punktHittad = false;
     for(int i = 0; i < this.horn.length; i++){
       h[i] = this.horn[i];
       if(hornNamn.equals(this.horn[i].getNamn())){
-        h[i] = new Punkt (horn);
+        punktHittad = true;
+        h[i] = new Punkt (horn); // Kopierar resursen istället för referensen genom att använda new operator med punkten horn (som vi fått som parameter) som argument till constructor
         while(i < this.horn.length){
           h[i+1] = this.horn[i];
           i++;
         }
       }
     }
-    this.horn = h;
+    if(punktHittad == true){
+      this.horn = h;
+    } else {
+      System.out.println("Angiven punkt existerar inte i befintlig polylinje!");
+    }
   }
 
   public void taBort (String hornNamn) {
-    
+    Punkt[] h = new Punkt[this.horn.length - 1];
+    boolean punktHittad = false;
+    int posPunkt = 0;
+    for(int i = 0; i < this.horn.length; i++){
+      if(hornNamn.equals(this.horn[i].getNamn())){
+        punktHittad = true;
+        posPunkt = i;
+      }
+    }
+    if(punktHittad == true){
+      int j = 0;
+      for(int i = 0; i < h.length; i++){
+        //int j = i;
+        if(j == posPunkt){
+          j++;
+          h[i] = this.horn[j];
+        } else {
+          h[i] = this.horn[j];
+        }
+        j++;
+      }
+      this.horn = h;
+    } else {
+      System.out.println("Angiven punkt finns inte i befintlig polylinje");
+    }
   }
 
 }
