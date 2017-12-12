@@ -22,9 +22,9 @@ public class Punkt{
 
   // Constructor using another Punkt as argument
   public Punkt(Punkt p){
-    namn = p.namn;
-    koordinater[0] = p.koordinater[0];
-    koordinater[1] = p.koordinater[1];
+    this.namn = p.getNamn();
+    this.koordinater[0] = p.getX();
+    this.koordinater[1] = p.getY();
   }
 
   public String toString(){

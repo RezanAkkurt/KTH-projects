@@ -48,11 +48,11 @@ public class Polylinje{
   // toString method that returns a string in order to print the Punkt-array, farg and bredd
   public String toString () {
     StringBuilder s = new StringBuilder();
-    s.append("(");
+    s.append("[");
     for(int i = 0; i < horn.length; i++){
       s.append(this.horn[i] + ", ");
     }
-    s.append("farg = " + getFarg() + ", bredd = " + getBredd() + ")");
+    s.append("farg = " + getFarg() + ", bredd = " + getBredd() + "]");
     String string = s.toString();
     return string;
   }
@@ -130,6 +130,24 @@ public class Polylinje{
     } else {
       System.out.println("Angiven punkt existerar inte i befintlig polylinje!");
     }
+  }
+
+  public void laggTillFramfor1(Punkt horn, String hornNamn){
+    Punkt[] h = new Punkt[this.horn.length + 1];
+    boolean punktHittad = false;
+    int i = 0;
+    for (i = 0; i < this.horn.length; i++) {
+      if(hornNamn.equals(this.horn[i].getNamn())){
+        punktHittad = true;
+        h[i] = new Punkt(horn);
+      } else if(punktHittad == true){
+        h[i] = this.horn[i-1];
+      } else {
+        h[i] = this.horn[i];
+      }
+    }
+    h[i] = this.horn[i-1];
+    this.horn = h;
   }
 
   public void taBort (String hornNamn) {
