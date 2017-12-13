@@ -70,6 +70,11 @@ public class Polylinje{
     return copyPunkter;
   }
 
+  public Punkt getPunkt(int i){
+    Punkt p = this.horn[i];
+    return p; // returnernar bara referensen till punkten som åberopas.
+  }
+
   //return current farg of object
   public String getFarg () {
     return this.farg;
@@ -182,5 +187,42 @@ public class Polylinje{
       System.out.println("Angiven punkt finns inte i befintlig polylinje");
     }
   }
+
+  public class PolylinjeIterator {
+
+    private int aktuell = -1;
+
+    public PolylinjeIterator () {
+      if (Polylinje.this.horn.length > 0) {
+        aktuell = 0;
+      }
+    }
+
+    public boolean finnsHorn ()  {
+      return aktuell != -1;
+    }
+
+    public Punkt horn () throws java.util.NoSuchElementException{
+      if (!this.finnsHorn ()) {
+        throw new java.util.NoSuchElementException ("slut av iterationen");
+      }
+
+      Punkt horn = Polylinje.this.horn[aktuell];
+
+      return horn;
+
+    }
+
+    public void gaFram () {
+      if (aktuell >= 0 && aktuell < Polylinje.this.horn.length - 1){
+        aktuell++;
+      } else {
+        aktuell = -1;
+      }
+
+    }
+
+  }
+
 
 }

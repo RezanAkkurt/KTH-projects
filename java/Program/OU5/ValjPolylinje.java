@@ -18,25 +18,57 @@ class ValjPolylinje{
     }
 
     // visa polylinjerna
+    System.out.println();
     for (int i = 0; i < ANTAL_POLYLINJER; i++ ) {
       System.out.println(polylinjer[i]);
     }
+    System.out.println();
 
     // bestäm den kortaste av de polylinjer som är gula
-    double kortasteLängden = polylinjer[0].langd();
-    Polylinje kortasteGulaPolylinjen = new Polylinje();
+    // Hitta den första gula polylinjen. Sätt denna som den kortaste.
+    double kortasteLangden = 0;
+    int kortasteIndex = -1;
+    for(int i = polylinjer.length-1; i >= 0; i--){
+      if(polylinjer[i].getFarg().equals("gul")){
+        kortasteLangden = polylinjer[i].langd();
+        kortasteIndex = i;
+      }
+    }
 
+    //int kortasteIndex = -1; // Start värde på vilken plats som den kortaste gula linjen ligger på (-1 ligger utanför arrayen)
     //loopa igenom varje polylinje med färgen gul och ta reda på den kortaste polylinjen med hjälp av en uppdaterinsstrategi
     for(int i = 0; i < ANTAL_POLYLINJER; i++){
         if(polylinjer[i].getFarg().equals("gul")){
-            if (polylinjer[i].langd() < kortasteLängden){
-                kortasteLängden = polylinjer[i].langd();
-                kortasteGulaPolylinjen = polylinjer[i];
-            }
+          System.out.println("Gul polylinje: " + polylinjer[i].toString() + " och dess langd = " + polylinjer[i].langd());
+          if (polylinjer[i].langd() < kortasteLangden){
+              kortasteLangden = polylinjer[i].langd();
+              //kortasteGulaPolylinjen = polylinjer[i];
+              kortasteIndex = i;
+          }
         }
     }
-    // visa den valda polylinjen
-     System.out.println("\nDen kortaste gula polylinjen:\n" + kortasteGulaPolylinjen.toString());
+
+    if(kortasteLangden == 0 && kortasteIndex == -1){ // om kortasteLangden == 0 && kortasteIndex == -1 -> finns ingen gul polylinje.
+      System.out.println("Det finns ingen gul polylinje!");
+    } else {
+      // visa den valda polylinjen
+      System.out.println("\nDen kortaste gula polylinjen:\n" + polylinjer[kortasteIndex].toString());
+      System.out.println("Dess langd = " + polylinjer[kortasteIndex].langd());
+      System.out.println();
+    }
+
+    //OuterClass.InnerClass innerObject = outerObject.new InnerClass();
+    //Iteratorn körs bara om det finns en kortaste gul polylinje
+    if(kortasteIndex != -1){
+      Polylinje.PolylinjeIterator iterator = polylinjer[kortasteIndex].new PolylinjeIterator();
+
+      for (int i = 0; i < polylinjer[kortasteIndex].getHorn().length; i++) {
+        System.out.println(iterator.horn());
+        iterator.gaFram();
+      }
+      iterator.gaFram();
+      System.out.println(iterator.horn()); // Exception: slut av iterationen
+    }
   }
 
   // slumpPunkt returnerar en punkt med ett slumpmässigt namn, som är en stor bokstav i
@@ -56,19 +88,25 @@ class ValjPolylinje{
     Polylinje polylinje = new Polylinje ();
     int antalHorn = 2 + rand.nextInt (7);
     int antalValdaHorn = 0;
-    //boolean[] valdaNamn = new boolean[26];
-    String alfabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    boolean[] valdaNamn = new boolean[26];
     // ett och samma namn kan inte förekomma flera gånger
     Punkt valdPunkt = null;
-    //char valtChar = 0;
+    char valtChar = 0;
     while (antalValdaHorn < antalHorn) {
-      valdPunkt = slumpPunkt();
-      String bokstav = String.valueOf(alfabet.charAt(rand.nextInt(alfabet.length()))); // String.valueOf och inte alfabet.valueOf då valueOf är static i String-klassen.
-      valdPunkt.setNamn(bokstav);
-      alfabet = alfabet.replaceAll(bokstav, "");
 
+      valdPunkt = slumpPunkt(); // Skapa slumpPunkt
+      //String namn = valdPunkt.getNamn(); // Lagra slumpPunktens namn som string.
+      valtChar = valdPunkt.getNamn().charAt(0); //Lagrat slumpPunktens namn som char.
+      int valtCharSomInt = (int) valtChar - 65; // Konverterar slumpPunktens namn som int.
+      while(valdaNamn[valtCharSomInt] == true){
+        valdPunkt = slumpPunkt();
+        valtChar = valdPunkt.getNamn().charAt(0);
+        valtCharSomInt = (int) valtChar - 65;
+      }
+      valdaNamn[valtCharSomInt] = true; // Sätter slumpPunktens namn som true i boolean array.
       polylinje.laggTill(valdPunkt);
       antalValdaHorn++;
+
     }
 
     // sätt färg

@@ -75,3 +75,33 @@ class test {
   }
 
 }
+
+
+/*
+public static Polylinje slumpPolylinje () {
+  // skapa en tom polylinje, och lägg till hörn till den
+  Polylinje polylinje = new Polylinje ();
+  int antalHorn = 2 + rand.nextInt (7);
+  int antalValdaHorn = 0;
+  //boolean[] valdaNamn = new boolean[26];
+  String alfabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  // ett och samma namn kan inte förekomma flera gånger
+  Punkt valdPunkt = null;
+  //char valtChar = 0;
+  while (antalValdaHorn < antalHorn) {
+    valdPunkt = slumpPunkt();
+    String bokstav = String.valueOf(alfabet.charAt(rand.nextInt(alfabet.length()))); // String.valueOf och inte alfabet.valueOf då valueOf är static i String-klassen.
+    valdPunkt.setNamn(bokstav);
+    alfabet = alfabet.replaceAll(bokstav, "");
+
+    polylinje.laggTill(valdPunkt);
+    antalValdaHorn++;
+  }
+
+  // sätt färg
+  polylinje.setFarg(FARGER[rand.nextInt(FARGER.length)]);
+
+  return polylinje;
+}
+
+ */

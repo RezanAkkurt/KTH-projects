@@ -38,8 +38,10 @@ class PolylinjeTest{
 
     // Kopiera punkterna i en polylinje -> ändra X-värdet i första punkten och sedan skriv ut den punkten.
     Punkt[] copyPunkter = p1.getHorn();
-    copyPunkter[1].setX(12);
-    System.out.println(copyPunkter[1]);
+    System.out.println("Punkten A i kopia av hornen i p1 = " + copyPunkter[0]);
+    System.out.println("Punkten A i p1: " + p1.getPunkt(0).toString());
+    copyPunkter[0].setX(12);
+    System.out.println("Ändrat X-koordinaten i kopian av p1: " + copyPunkter[0]);
     System.out.println();
     System.out.println("p1 = " + p1);
     System.out.println();
