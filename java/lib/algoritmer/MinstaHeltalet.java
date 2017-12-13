@@ -24,9 +24,9 @@ public class MinstaHeltalet{
       i = 0;
       j = 0;
         while (j < antaletPar) {
-          // boolean statement ? true result : false result;
-          // Nedan betyder om sekvens[i] är mindre än sekvens[i+1] -> sekvens[i]
-          // om sekvens[i] inte är mindre än sekvens[i+1] -> sekvens[i+1]
+          /* boolean statement ? true result : false result;
+             Nedan betyder om sekvens[i] är mindre än sekvens[i+1] -> sekvens[i]
+             om sekvens[i] inte är mindre än sekvens[i+1] -> sekvens[i+1] */
           delsekvens[j++] = (sekvens[i] < sekvens[i + 1])? sekvens[i] : sekvens[i + 1];
           i += 2;
         }
