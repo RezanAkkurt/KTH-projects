@@ -22,7 +22,7 @@ Analysera transformationer av talsekvensen, och hitta det första felet i metode
   ursprungliga sekvensen är 16). Således blir while-loopens boolean condition (sekvens.length > 1) alltid sann då (8>1) alltid är sant.
 
   Lösningen på problemet är att ändra den yttre while-loopens condition till antaletPar >= 1. Detta är för att vi vill att programmets
-  algoritm ska köras så länge det finns ett par tal att jämföra. 
+  algoritm ska köras så länge det finns ett par tal att jämföra.
 
 2. För att hitta det andra felet spåra den korrigerade varianten av metoden min.
 Använd en sekvens som innehåller nitton element med det minsta elementet på den sjuttonde positionen.
@@ -50,12 +50,12 @@ class EU1{
     int[] element1 = {5, 2, 7, 4, 8, 4, 5, 3, 6, 5, 1, 8, 3, 5, 7, 8};
     int[] element2 = {10, 7, 2, 5, 10, 6, 8, 7, 10, 9, 8, 7, 1, 7, 4, 3, 0, 4, 9};
 
-    int minstaHeltalet = MinstaHeltalet.min(element1);
+    int minstaHeltalet = MinstaHeltalet.min(element2);
 
     System.out.println();
     System.out.println("Det minsta heltalet ar: " + minstaHeltalet);
 
-    int minstaHeltalet1 = MinstaHeltalet.minUpdateStrat(element1);
+    int minstaHeltalet1 = MinstaHeltalet.minUpdateStrat(element2);
 
     System.out.println();
     System.out.println("Det minsta heltalet ar: " + minstaHeltalet1);

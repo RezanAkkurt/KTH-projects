@@ -19,7 +19,7 @@ public class MinstaHeltalet{
     int i = 0;
     int j = 0;
 
-    while (antaletPar >= 1) {
+    while (antaletPar >= 1) { // HÄR FANNS FÖRSTA FELET
       // skilj ur en delsekvens med de tänkbara elementen
       i = 0;
       j = 0;
@@ -33,7 +33,8 @@ public class MinstaHeltalet{
       }
 
       if (antaletOparadeElement == 1){
-        delsekvens[j] = sekvens[sekvens.length - 1]; // istället för i sekvens.length - 1
+        delsekvens[j] = sekvens[i]; // HÄR FANNS ANDRA FELET, det går även att köra antaletPar*2 istället för i
+                                    // Minsta talet finns alltid på position index 4.
       }
 
       // utgå nu ifrån delsekvensen
