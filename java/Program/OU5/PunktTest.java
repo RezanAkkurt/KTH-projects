@@ -46,5 +46,10 @@ class PunktTest{
     out.println ("p1 = " + p1);
     out.println ("Is p1 equal to p2 (true/false) = " + p1.equals(p));
 
+    p.setNamn("Test");
+    out.println(p);
+    p.setNamn1("TEST2");
+    out.println(p);
+
   }
 }
