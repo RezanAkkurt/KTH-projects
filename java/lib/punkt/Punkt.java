@@ -59,8 +59,15 @@ public class Punkt{
     return b;
   }
 
+  // Metoden setNamn tar emot en string och ändrar aktuella objektets namn (this.namn) och returnerar inget.
   public void setNamn(String namn){
     this.namn = namn;
+  }
+
+  // Metoden setNamn1 tar emot en string och ändrar aktuella objektets namn(this.namn) och returnerar själva objektet (this);
+  public Punkt setNamn1(String namn){
+    this.namn = namn;
+    return this;
   }
 
   public void setX(int x){
