@@ -111,4 +111,5 @@ public class Chessboard {
   public class Bishop extends Chesspiece {}
   public class Queen extends Chesspiece {}
   public class King extends Chesspiece {}
+    
 }
