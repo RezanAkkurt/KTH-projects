@@ -42,7 +42,7 @@ public class Chessboard {
 
   public static final int NUMBER_OF_ROWS = 8;
   public static final int NUMBER_OF_COLUMNS = 8;
-  public static final int FIRST_ROW = 'A';
+  public static final int FIRST_ROW = 'A'; // 'A' = 65
   public static final int FIRST_COLUMN = 1;
 
   private Field[][] fields; // Skapar en variabel av typen Field.
@@ -76,6 +76,11 @@ public class Chessboard {
   public boolean isValidField (char row, byte column) {
     int num = (int) row;
     int num2 = (int) column;
+    if(num > 64 && num < 73 && num2 > 0 && num < 9){
+      return true;
+    } else {
+      return false;
+    }
   }
 
   public abstract class Chesspiece{
@@ -137,10 +142,129 @@ public class Chessboard {
     }
   }
 
-  public class Rook extends Chesspiece {}
-  public class Knight extends Chesspiece {}
-  public class Bishop extends Chesspiece {}
-  public class Queen extends Chesspiece {}
-  public class King extends Chesspiece {}
+  public class Rook extends Chesspiece {
+
+    public Rook (char color, char name){
+      super (color, name);
+    }
+
+    public void markReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark ();
+      }
+    }
+
+    public void unmarkReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark ();
+      }
+    }
+  }
+
+  public class Knight extends Chesspiece {
+
+    public Knight (char color, char name){
+      super (color, name);
+    }
+
+    public void markReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark ();
+      }
+    }
+
+    public void unmarkReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark ();
+      }
+    }
+  }
+
+  public class Bishop extends Chesspiece {
+
+    public Bishop (char color, char name){
+      super (color, name);
+    }
+
+    public void markReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark ();
+      }
+    }
+
+    public void unmarkReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark ();
+      }
+    }
+  }
+
+  public class Queen extends Chesspiece {
+    
+    public Queen (char color, char name){
+      super (color, name);
+    }
+
+    public void markReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark ();
+      }
+    }
+
+    public void unmarkReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark ();
+      }
+    }
+  }
+
+  public class King extends Chesspiece {
+
+    public King (char color, char name){
+      super (color, name);
+    }
+
+    public void markReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark ();
+      }
+    }
+
+    public void unmarkReachableFields (){
+      byte col = (byte) (column + 1);
+      if (Chessboard.this.isValidField (row, col)){
+        int r = row - FIRST_ROW;
+        int c = col - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark ();
+      }
+    }
+  }
 
 }
