@@ -1,3 +1,6 @@
+
+package lib.chess;
+
 import lib.chess.NotValidFieldException;
 
 public class Chessboard {
@@ -64,19 +67,23 @@ public class Chessboard {
 
   public String toString () {
     StringBuilder string = new StringBuilder();
+    System.out.println("  A  B  C  D  E  F  G  H");
     for(int column = 0; column < NUMBER_OF_COLUMNS; column++){
-      for(int row = 0; row < NUMBER_OF_COLUMNS; row++){
+      string.append((column+1) + " ");
+      for(int row = 0; row < NUMBER_OF_ROWS; row++){
         string.append(this.fields[row][column] + " ");//System.out.println(this.fields[row][column]);
       }
+
       string.append("\n");
     }
     return string.toString();
+
   }
 
   public boolean isValidField (char row, byte column) {
-    int num = (int) row;
-    int num2 = (int) column;
-    if(num > 64 && num < 73 && num2 > 0 && num < 9){
+    int num = (int) row - FIRST_ROW;
+    int num2 = (int) column - FIRST_COLUMN;
+    if(num > -1 && num < 8 && num2 > -1 && num < 8){
       return true;
     } else {
       return false;
@@ -91,10 +98,15 @@ public class Chessboard {
     // P – Pawn
     protected char row = 0;
     protected byte column = -1;
-    protected Chesspiece (char color, char name) {}
+    protected Chesspiece (char color, char name) {
+      this.color = color;
+      this.name = name;
+    }
 
     public String toString (){
-      return "" + color + name;
+      //"" + color + name;
+      String s = String.valueOf(this.color) + String.valueOf(this.name);
+      return s;
     }
 
     public boolean isOnBoard (){
