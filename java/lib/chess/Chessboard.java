@@ -218,7 +218,7 @@ public class Chessboard {
   }
 
   public class Queen extends Chesspiece {
-    
+
     public Queen (char color, char name){
       super (color, name);
     }
