@@ -1,24 +1,41 @@
+import lib.chess.NotValidFieldException;
+
 public class Chessboard {
 
+  // Every square on the Chessboard is an object of the type Field.
+  // An object of the type Field has a name (row+column), can have a Chesspiece on it, and can be marked by other Chesspieces.
   public static class Field{
     private char row;
     private byte column;
     private Chesspiece piece = null;
     private boolean marked = false;
 
-    public Field (char row, byte column) {}
+    public Field (char row, byte column) {
+      this.row = row;
+      this.column = column;
+    }
 
-    public void put (Chesspiece piece) {}
+    public void put (Chesspiece piece) {
+      this.piece = piece;
+    }
 
-    public Chesspiece take () {}
+    public Chesspiece take () {
+      Chesspiece temp = this.piece;
+      this.piece = null;
+      return temp;
+    }
 
-    public void mark () {}
+    public void mark () {
+      this.marked = true;
+    }
 
-    public void unmark () {}
+    public void unmark () {
+      this.marked = false;
+    }
 
     public String toString (){
-      String s = (marked)? "xx" : "--";
-      return (piece == null)? s : piece.toString ();
+      String s = (marked)? "xx" : "--"; //s depends on if the field is marked.
+      return (piece == null)? s : piece.toString (); //if there is a piece on the field.
     }
 
   }
@@ -28,8 +45,9 @@ public class Chessboard {
   public static final int FIRST_ROW = 'A';
   public static final int FIRST_COLUMN = 1;
 
-  private Field[][] fields;
+  private Field[][] fields; // Skapar en variabel av typen Field.
 
+  // Constructor
   public Chessboard (){
     fields = new Field[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
     char row = 0;
@@ -44,8 +62,21 @@ public class Chessboard {
     }
   }
 
-  public String toString () {}
-  public boolean isValidField (char row, byte column) {}
+  public String toString () {
+    StringBuilder string = new StringBuilder();
+    for(int column = 0; column < NUMBER_OF_COLUMNS; column++){
+      for(int row = 0; row < NUMBER_OF_COLUMNS; row++){
+        string.append(this.fields[row][column] + " ");//System.out.println(this.fields[row][column]);
+      }
+      string.append("\n");
+    }
+    return string.toString();
+  }
+
+  public boolean isValidField (char row, byte column) {
+    int num = (int) row;
+    int num2 = (int) column;
+  }
 
   public abstract class Chesspiece{
     private char color;
@@ -56,6 +87,7 @@ public class Chessboard {
     protected char row = 0;
     protected byte column = -1;
     protected Chesspiece (char color, char name) {}
+
     public String toString (){
       return "" + color + name;
     }
@@ -64,7 +96,6 @@ public class Chessboard {
       return Chessboard.this.isValidField (row, column);
     }
 
-    //Skapa exception-klass
     public void moveTo (char row, byte column) throws NotValidFieldException {
       if (!Chessboard.this.isValidField (row, column)){
         throw new NotValidFieldException ("bad field: " + row + column );
