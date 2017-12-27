@@ -23,9 +23,8 @@ public class Chessboard {
     }
 
     public Chesspiece take () {
-      Chesspiece temp = this.piece;
       this.piece = null;
-      return temp;
+      return null;
     }
 
     public void mark () {
@@ -55,9 +54,11 @@ public class Chessboard {
     fields = new Field[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
     char row = 0;
     byte column = 0;
+
     for (int r = 0; r < NUMBER_OF_ROWS; r++){
       row = (char) (FIRST_ROW + r);
       column = FIRST_COLUMN;
+
       for (int c = 0; c < NUMBER_OF_COLUMNS; c++){
         fields[r][c] = new Field (row, column);
         column++;
@@ -81,9 +82,9 @@ public class Chessboard {
   }
 
   public boolean isValidField (char row, byte column) {
-    int num = (int) row - FIRST_ROW;
-    int num2 = (int) column - FIRST_COLUMN;
-    if(num > -1 && num < 8 && num2 > -1 && num < 8){
+    int rowInt = row - FIRST_ROW;
+    int columnInt = column - FIRST_COLUMN;
+    if(rowInt >= 0 && rowInt <= 7 && columnInt >= 0 && columnInt <= 7){
       return true;
     } else {
       return false;
@@ -109,6 +110,8 @@ public class Chessboard {
       return s;
     }
 
+    // isOnBoard works by if Chesspiece is on board then its' row and column are within isValidField parameters. If the Chesspiece is not on board then
+    // the Chesspieces' row = 0 (within) and column = -1 (not within) = isValidField method returns false!
     public boolean isOnBoard (){
       return Chessboard.this.isValidField (row, column);
     }
@@ -117,17 +120,81 @@ public class Chessboard {
       if (!Chessboard.this.isValidField (row, column)){
         throw new NotValidFieldException ("bad field: " + row + column );
       }
+
+      // First the piece is removed if it is already on the board, then it is put where it is moved to.
+      if(this.column != -1){
+        int rowInt = this.row - FIRST_ROW;
+        int columnInt = this.column - FIRST_COLUMN;
+        Chessboard.this.fields[rowInt][columnInt].take();
+      }
+      //Chessboard.this.fields[this.row][this.column].take();
+
       this.row = row;
       this.column = column;
       int r = row - FIRST_ROW;
       int c = column - FIRST_COLUMN;
       Chessboard.this.fields[r][c].put (this);
+
     }
 
-    public void moveOut () {}
+    // The piece is moved out from the board, position becomes then row = 0, column = -1 (which is outside of the array).
+    public void moveOut () {
+      int r = this.row - FIRST_ROW;
+      int c = this.column - FIRST_COLUMN;
+      Chessboard.this.fields[r][c].take();
+      this.row = 0;
+      this.column = -1;
+    }
+
     public abstract void markReachableFields ();
     public abstract void unmarkReachableFields ();
+
+    public void markyMark(char newRow, byte newColumn){
+      if(Chessboard.this.isValidField(newRow, newColumn)){
+        int r = newRow - FIRST_ROW;
+        int c = newColumn - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].mark();
+      }
+    }
+
+    public void unmarkyMark(char newRow, byte newColumn){
+      if(Chessboard.this.isValidField(newRow, newColumn)){
+        int r = newRow - FIRST_ROW;
+        int c = newColumn - FIRST_COLUMN;
+        Chessboard.this.fields[r][c].unmark();
+      }
+    }
+
+    /*
+    public char getColor(){
+      return this.color;
+    }
+    */
   }
+
+/*
+  public class movablePos{
+    char newRow;
+    byte newColumn;
+
+    public movablePos(char exrow, byte excolumn){
+      this.newRow = exrow;
+      this.newColumn = excolumn;
+    }
+
+    public class knightPos{
+      movablePos[] knightPos = new movablePos[8];
+      KnightPos[0] = new movablePos()
+      KnightPos[1] =
+      KnightPos[2] =
+      KnightPos[3] =
+      KnightPos[4] =
+      KnightPos[5] =
+      KnightPos[6] =
+      KnightPos[7] =
+    }
+  }
+  */
 
   public class Pawn extends Chesspiece{
 
@@ -136,10 +203,16 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
+      byte newColumn;
+      if(column == 'w'){
+        newColumn = (byte) (column + 1);
+      } else{
+        newColumn = (byte) (column - 1);
+      }
+
+      if (Chessboard.this.isValidField (row, newColumn)){
         int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
+        int c = newColumn - FIRST_COLUMN;
         Chessboard.this.fields[r][c].mark ();
       }
     }
@@ -161,20 +234,49 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].mark ();
+
+      //for loop must be <= NUMBER_OF_COLUMNS because FIRST_COLUMN is always 1 so when we subtract on the last loop-run it becomes c = 7-1 = 6 when we want c = 7 (last array index);
+      for(int i = 0; i <= NUMBER_OF_COLUMNS; i++){
+        byte newColumn = (byte) i; // pointer for the columns to be marked.
+        if(Chessboard.this.isValidField(row, newColumn)){
+          int r = row - FIRST_ROW;
+          int c = newColumn - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].mark();
+        }
       }
+
+      for(int i = 0; i < NUMBER_OF_ROWS; i++){
+        char newRow = (char) (FIRST_ROW + i); // pointer for the rows to be marked.
+        if(Chessboard.this.isValidField(newRow, column)){
+          int r = newRow - FIRST_ROW;
+          int c = column - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].mark();
+        }
+
+      }
+
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].unmark ();
+
+      //unmarking column by fixating the row but iterate column through variable i and pointer newColumn.
+      for(int i = 0; i <= NUMBER_OF_COLUMNS; i++){
+        byte newColumn = (byte) i; // pointer for the columns to be unmarked.
+        if(Chessboard.this.isValidField(row, newColumn)){
+          int r = row - FIRST_ROW;
+          int c = newColumn - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].unmark();
+        }
+      }
+
+      //unmarking row by fixating the column but iterate row through variable i and newRow.
+      for(int i = 0; i < NUMBER_OF_ROWS; i++){
+        char newRow = (char) (FIRST_ROW + i); // pointer for the rows to be unmarked.
+        if(Chessboard.this.isValidField(newRow, column)){
+          int r = newRow - FIRST_ROW;
+          int c = column - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].unmark();
+        }
       }
     }
   }
@@ -186,21 +288,73 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].mark ();
-      }
+      char newRow = (char) (this.row + 1);
+      byte newColumn = (byte) (this.column - 2);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+2);
+      newColumn = (byte) (this.column-1);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+2);
+      newColumn = (byte) (this.column+1);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+1);
+      newColumn = (byte) (this.column+2);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-1);
+      newColumn = (byte) (this.column+2);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-2);
+      newColumn = (byte) (this.column+1);
+      markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-2);
+      newColumn = (byte) (this.column-1);
+      super.markyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-1);
+      newColumn = (byte) (this.column-2);
+      markyMark(newRow, newColumn);
+
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].unmark ();
-      }
+      char newRow = (char) (this.row + 1);
+      byte newColumn = (byte) (this.column - 2);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+2);
+      newColumn = (byte) (this.column-1);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+2);
+      newColumn = (byte) (this.column+1);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row+1);
+      newColumn = (byte) (this.column+2);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-1);
+      newColumn = (byte) (this.column+2);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-2);
+      newColumn = (byte) (this.column+1);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-2);
+      newColumn = (byte) (this.column-1);
+      super.unmarkyMark(newRow, newColumn);
+
+      newRow = (char) (this.row-1);
+      newColumn = (byte) (this.column-2);
+      super.unmarkyMark(newRow, newColumn);
+
     }
   }
 
@@ -211,21 +365,11 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].mark ();
-      }
+
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].unmark ();
-      }
+
     }
   }
 
@@ -236,21 +380,11 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].mark ();
-      }
+
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].unmark ();
-      }
+
     }
   }
 
