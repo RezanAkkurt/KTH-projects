@@ -127,5 +127,30 @@ public class ChessboardTest{
     System.out.println("Unmark Bishop reachable fields");
     p6.unmarkReachableFields();
     System.out.println(chessboard);
+
+    //remove Bishop
+    p6.moveOut();
+
+    //Create Queen
+    Chessboard.Queen p7 = chessboard.new Queen('w', 'Q');
+
+    try{
+      p7.moveTo('B', (byte) 3);
+    } catch(Exception NotValidFieldException){
+      System.out.println(NotValidFieldException);
+    }
+
+    System.out.println("Mark Queen reachable fields");
+    p7.markReachableFields();
+    System.out.println(chessboard);
+
+    System.out.println("Unmark Queen reachable fields");
+    p7.unmarkReachableFields();
+    System.out.println(chessboard);
+
+    //remove Queen
+    p7.moveOut();
+
+
   }
 }

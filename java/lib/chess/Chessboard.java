@@ -194,10 +194,16 @@ public class Chessboard {
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
+      byte newColumn;
+      if(column == 'w'){
+        newColumn = (byte) (column + 1);
+      } else{
+        newColumn = (byte) (column - 1);
+      }
+
+      if (Chessboard.this.isValidField (row, newColumn)){
         int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
+        int c = newColumn - FIRST_COLUMN;
         Chessboard.this.fields[r][c].unmark ();
       }
     }
@@ -471,10 +477,119 @@ public class Chessboard {
 
     public void markReachableFields (){
 
+      //for loop must be <= NUMBER_OF_COLUMNS because FIRST_COLUMN is always 1 so when we subtract on the last loop-run it becomes c = 7-1 = 6 when we want c = 7 (last array index);
+      for(int i = 0; i <= NUMBER_OF_COLUMNS; i++){
+        byte newColumn = (byte) i; // pointer for the columns to be marked.
+        if(Chessboard.this.isValidField(row, newColumn)){
+          int r = row - FIRST_ROW;
+          int c = newColumn - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].mark();
+        }
+      }
+
+      for(int i = 0; i < NUMBER_OF_ROWS; i++){
+        char newRow = (char) (FIRST_ROW + i); // pointer for the rows to be marked.
+        if(Chessboard.this.isValidField(newRow, column)){
+          int r = newRow - FIRST_ROW;
+          int c = column - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].mark();
+        }
+
+      }
+
+      char rowTemp;
+      byte columnTemp;
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
     }
 
     public void unmarkReachableFields (){
 
+      //unmarking column by fixating the row but iterate column through variable i and pointer newColumn.
+      for(int i = 0; i <= NUMBER_OF_COLUMNS; i++){
+        byte newColumn = (byte) i; // pointer for the columns to be unmarked.
+        if(Chessboard.this.isValidField(row, newColumn)){
+          int r = row - FIRST_ROW;
+          int c = newColumn - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].unmark();
+        }
+      }
+
+      //unmarking row by fixating the column but iterate row through variable i and newRow.
+      for(int i = 0; i < NUMBER_OF_ROWS; i++){
+        char newRow = (char) (FIRST_ROW + i); // pointer for the rows to be unmarked.
+        if(Chessboard.this.isValidField(newRow, column)){
+          int r = newRow - FIRST_ROW;
+          int c = column - FIRST_COLUMN;
+          Chessboard.this.fields[r][c].unmark();
+        }
+      }
+
+      char rowTemp;
+      byte columnTemp;
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
     }
   }
 
