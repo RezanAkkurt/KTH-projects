@@ -172,30 +172,6 @@ public class Chessboard {
     */
   }
 
-/*
-  public class movablePos{
-    char newRow;
-    byte newColumn;
-
-    public movablePos(char exrow, byte excolumn){
-      this.newRow = exrow;
-      this.newColumn = excolumn;
-    }
-
-    public class knightPos{
-      movablePos[] knightPos = new movablePos[8];
-      KnightPos[0] = new movablePos()
-      KnightPos[1] =
-      KnightPos[2] =
-      KnightPos[3] =
-      KnightPos[4] =
-      KnightPos[5] =
-      KnightPos[6] =
-      KnightPos[7] =
-    }
-  }
-  */
-
   public class Pawn extends Chesspiece{
 
     public Pawn (char color, char name){
@@ -281,13 +257,50 @@ public class Chessboard {
     }
   }
 
+  //Create a definition-class to store every possible Knight movement
+  public class KnightMove{
+    public final char row;
+    public final byte column;
+    public KnightMove(char row, byte column){
+      this.row = row;
+      this.column = column;
+    }
+
+  }
+
   public class Knight extends Chesspiece {
 
     public Knight (char color, char name){
       super (color, name);
     }
 
+    //Create a private method that creates an array of every possible Knight movement relative to the chesspiece. The method then returns the array.
+    private KnightMove[] getReachableCoords(){
+      char tempRow;
+      KnightMove[] coords = new KnightMove[8];
+
+      tempRow = (char) (this.row-2);
+      coords[0] = new KnightMove(tempRow, (byte) (this.column-1));
+      coords[1] = new KnightMove(tempRow, (byte) (this.column+1));
+
+      tempRow = (char) (this.row-1);
+      coords[2] = new KnightMove(tempRow, (byte) (this.column-2));
+      coords[3] = new KnightMove(tempRow, (byte) (this.column+2));
+
+      tempRow = (char) (this.row+1);
+      coords[4] = new KnightMove(tempRow, (byte) (this.column-2));
+      coords[5] = new KnightMove(tempRow, (byte) (this.column+2));
+
+      tempRow = (char) (this.row+2);
+      coords[6] = new KnightMove(tempRow, (byte) (this.column-1));
+      coords[7] = new KnightMove(tempRow, (byte) (this.column+1));
+
+      return coords;
+    }
+
     public void markReachableFields (){
+
+      /*
       char newRow = (char) (this.row + 1);
       byte newColumn = (byte) (this.column - 2);
       markyMark(newRow, newColumn);
@@ -319,10 +332,16 @@ public class Chessboard {
       newRow = (char) (this.row-1);
       newColumn = (byte) (this.column-2);
       markyMark(newRow, newColumn);
+      */
 
+      KnightMove[] coords = getReachableCoords();
+      for(int i = 0; i < 8; i++){
+        markyMark(coords[i].row, coords[i].column);
+      }
     }
 
     public void unmarkReachableFields (){
+      /*
       char newRow = (char) (this.row + 1);
       byte newColumn = (byte) (this.column - 2);
       super.unmarkyMark(newRow, newColumn);
@@ -354,7 +373,12 @@ public class Chessboard {
       newRow = (char) (this.row-1);
       newColumn = (byte) (this.column-2);
       super.unmarkyMark(newRow, newColumn);
+      */
 
+      KnightMove[] coords = getReachableCoords();
+      for(int i = 0; i < 8; i++){
+        super.unmarkyMark(coords[i].row, coords[i].column);
+      }
     }
   }
 
