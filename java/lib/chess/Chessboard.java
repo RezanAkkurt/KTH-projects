@@ -389,11 +389,77 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
+      char rowTemp;
+      byte columnTemp;
 
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          markyMark(rowTemp, columnTemp);
+        }
+      }
     }
 
     public void unmarkReachableFields (){
+      char rowTemp;
+      byte columnTemp;
 
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row + i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column - i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
+
+      for(int i = 1; i < 8; i++){
+        rowTemp = (char) (this.row - i);
+        columnTemp = (byte) (this.column + i);
+        if(isValidField(rowTemp, columnTemp)){
+          unmarkyMark(rowTemp, columnTemp);
+        }
+      }
     }
   }
 

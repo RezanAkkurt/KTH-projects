@@ -74,6 +74,7 @@ public class ChessboardTest{
 
     System.out.println("Moved second wP to A5");
     System.out.println(chessboard);
+    p2.moveOut();
 
     Chessboard.Rook p4 = chessboard.new Rook('b', 'R');
     try{
@@ -85,7 +86,7 @@ public class ChessboardTest{
     p2.markReachableFields();
     p4.markReachableFields();
 
-    System.out.println("Marked Reachable Fields");
+    System.out.println("Mark Rook Reachable Fields");
     System.out.println(chessboard);
 
     System.out.println("Unmark Rook reachable fields");
@@ -101,10 +102,30 @@ public class ChessboardTest{
 
     p4.moveOut();
 
+    System.out.println("Mark Knight reachable fields");
     p5.markReachableFields();
     System.out.println(chessboard);
 
+    System.out.println("Unmark Knight reachable fields");
     p5.unmarkReachableFields();
+    System.out.println(chessboard);
+
+    //Move Knight out of Chessboard
+    p5.moveOut();
+
+    Chessboard.Bishop p6 = chessboard.new Bishop('b', 'B');
+    try{
+      p6.moveTo('E', (byte) 5);
+    } catch(Exception NotValidFieldException){
+      System.out.println(NotValidFieldException);
+    }
+
+    System.out.println("Mark Bishop reachable fields");
+    p6.markReachableFields();
+    System.out.println(chessboard);
+
+    System.out.println("Unmark Bishop reachable fields");
+    p6.unmarkReachableFields();
     System.out.println(chessboard);
   }
 }
