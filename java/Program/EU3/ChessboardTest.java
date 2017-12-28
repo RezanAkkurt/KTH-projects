@@ -14,7 +14,10 @@ public class ChessboardTest{
       ShadowTest.FirstLevel innerObjectReference = outerObject.new FirstLevel();
     */
 
-    Chessboard.Pawn p1 = chessboard.new Pawn('w', 'P');
+    Chessboard.Chesspiece p1 = chessboard.new Pawn('w', 'P');
+    // Man kan även skriva Chessboard.Pawn p1 = chessboard.new Pawn('w', 'P');
+    // Notera skillnaden mellan att skapa en referens-variabel av typen Chesspiece (abstract super class) och en referens-variabel av typen
+    // Pawn (non-abstract class). Fråga Fadil vilken som är bäst.
 
     try{
       p1.moveTo('A', (byte) 2);
