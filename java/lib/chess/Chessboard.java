@@ -165,11 +165,11 @@ public class Chessboard {
       }
     }
 
-    /*
+
     public char getColor(){
       return this.color;
     }
-    */
+
   }
 
   public class Pawn extends Chesspiece{
@@ -180,7 +180,7 @@ public class Chessboard {
 
     public void markReachableFields (){
       byte newColumn;
-      if(column == 'w'){
+      if(getColor() == 'w'){
         newColumn = (byte) (column + 1);
       } else{
         newColumn = (byte) (column - 1);
@@ -195,7 +195,7 @@ public class Chessboard {
 
     public void unmarkReachableFields (){
       byte newColumn;
-      if(column == 'w'){
+      if(getColor() == 'w'){
         newColumn = (byte) (column + 1);
       } else{
         newColumn = (byte) (column - 1);
@@ -600,21 +600,33 @@ public class Chessboard {
     }
 
     public void markReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].mark ();
+
+      for(int i = 1; i <= 3; i++){
+        byte newColumn = (byte) ((column + 2) - i); // pointer for the columns to be marked.
+        char newRow = (char) (row-1);
+        super.markyMark(newRow, newColumn);
+        newRow = (char) (row+1);
+        super.markyMark(newRow, newColumn);
       }
+
+      markyMark(row, (byte)(column+1));
+      markyMark(row, (byte)(column-1));
+
     }
 
     public void unmarkReachableFields (){
-      byte col = (byte) (column + 1);
-      if (Chessboard.this.isValidField (row, col)){
-        int r = row - FIRST_ROW;
-        int c = col - FIRST_COLUMN;
-        Chessboard.this.fields[r][c].unmark ();
+
+      for(int i = 1; i <= 3; i++){
+        byte newColumn = (byte) ((column + 2) - i); // pointer for the columns to be marked.
+        char newRow = (char) (row-1);
+        super.unmarkyMark(newRow, newColumn);
+        newRow = (char) (row+1);
+        super.unmarkyMark(newRow, newColumn);
       }
+
+      super.unmarkyMark(row, (byte)(column+1));
+      super.unmarkyMark(row, (byte)(column-1));
+
     }
   }
 

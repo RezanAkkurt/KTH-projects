@@ -7,18 +7,14 @@ public class ChessboardTest{
   public static void main(String[]args){
     Chessboard chessboard = new Chessboard();
 
-    System.out.println();
-    System.out.println("Print entire board");
-    System.out.println(chessboard);
-
     // OuterClass.InnerClass innerObject = outerObject.new InnerClass();
 
     /*
-    ShadowTest st = new ShadowTest();
-      ShadowTest.FirstLevel fl = st.new FirstLevel();
+    ShadowTest outerObjectReference = new ShadowTest();
+      ShadowTest.FirstLevel innerObjectReference = outerObject.new FirstLevel();
     */
 
-    Chessboard.Pawn p1 = chessboard.new Pawn('b', 'P');
+    Chessboard.Pawn p1 = chessboard.new Pawn('w', 'P');
 
     try{
       p1.moveTo('A', (byte) 2);
@@ -26,55 +22,30 @@ public class ChessboardTest{
       System.out.println(NotValidFieldException);
     }
 
-    System.out.println("Added chesspiece and moved to A2");
+    System.out.println();
+    System.out.println("Added pawn and moved to A2");
     System.out.println(chessboard);
 
-    Chessboard.Pawn p2 = chessboard.new Pawn('w', 'P');
+    Chessboard.Pawn p2 = chessboard.new Pawn('b', 'P');
     try{
       p2.moveTo('A', (byte) 7);
     } catch(Exception NotValidFieldException){
       System.out.println(NotValidFieldException);
     }
 
-    System.out.println("Added chesspiece and moved to A7");
+    System.out.println("Added pawn and moved to A7");
     System.out.println(chessboard);
 
+    System.out.println("Marked pawns reachable fields");
+    p1.markReachableFields();
+    p2.markReachableFields();
+    System.out.println(chessboard);
+
+    p1.unmarkReachableFields();
     p1.moveOut();
-
-    System.out.println("removed bP");
-    System.out.println(chessboard);
-
-    System.out.println("Is bP on board?");
-    System.out.println(p1.isOnBoard());
-
-    Chessboard.Pawn p3 = chessboard.new Pawn('w', 'P');
-    try{
-      p3.moveTo('A', (byte) 6);
-    } catch(Exception NotValidFieldException){
-      System.out.println(NotValidFieldException);
-    }
-
-    System.out.println("Added wP to A6");
-    System.out.println(chessboard);
-
-    try{
-      p2.moveTo('A', (byte) 6);
-    } catch(Exception NotValidFieldException){
-      System.out.println(NotValidFieldException);
-    }
-
-    System.out.println("Moved second wP to A6");
-    System.out.println(chessboard);
-
-    try{
-      p2.moveTo('A', (byte) 5);
-    } catch(Exception NotValidFieldException){
-      System.out.println(NotValidFieldException);
-    }
-
-    System.out.println("Moved second wP to A5");
-    System.out.println(chessboard);
+    p2.unmarkReachableFields();
     p2.moveOut();
+
 
     Chessboard.Rook p4 = chessboard.new Rook('b', 'R');
     try{
@@ -83,10 +54,8 @@ public class ChessboardTest{
       System.out.println(NotValidFieldException);
     }
 
-    p2.markReachableFields();
-    p4.markReachableFields();
-
     System.out.println("Mark Rook Reachable Fields");
+    p4.markReachableFields();
     System.out.println(chessboard);
 
     System.out.println("Unmark Rook reachable fields");
@@ -151,6 +120,21 @@ public class ChessboardTest{
     //remove Queen
     p7.moveOut();
 
+    // Add King
+    Chessboard.King p8 = chessboard.new King('b','K');
+    try{
+      p8.moveTo('D', (byte) 2);
+    } catch(Exception NotValidFieldException){
+      System.out.println(NotValidFieldException);
+    }
+
+    System.out.println("Mark King reachable fields");
+    p8.markReachableFields();
+    System.out.println(chessboard);
+
+    System.out.println("Unmark King reachable fields");
+    p8.unmarkReachableFields();
+    System.out.println(chessboard);
 
   }
 }
