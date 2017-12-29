@@ -1,5 +1,6 @@
 import lib.chess.Chessboard;
 import lib.chess.NotValidFieldException;
+import java.util.Random;
 
 public class ReachableFieldsOnChessboard{
   public static void main(String[] args){
@@ -23,6 +24,8 @@ public class ReachableFieldsOnChessboard{
     pieces[5] = chessBoard.new Knight ('w', 'N');
 
     // ToDo: Create a for-loop that 1. Randomly positions a chesspiece each time it is placed on the chessboard. 2. Presents the chesspieces (Enter chessboard,
-    // mark reachable fields, unmark reachable fields and then step off chessboard so that next chesspiece can present itself). 
+    // mark reachable fields, unmark reachable fields and then step off chessboard so that next chesspiece can present itself).
+
+    Random rand = new Random();
   }
 }
