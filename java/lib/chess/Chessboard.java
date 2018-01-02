@@ -66,6 +66,7 @@ public class Chessboard {
     }
   }
 
+  // toString method
   public String toString () {
     StringBuilder string = new StringBuilder();
     System.out.println("  A  B  C  D  E  F  G  H");
@@ -123,11 +124,8 @@ public class Chessboard {
 
       // First the piece is removed if it is already on the board, then it is put where it is moved to.
       if(this.column != -1){
-        int rowInt = this.row - FIRST_ROW;
-        int columnInt = this.column - FIRST_COLUMN;
-        Chessboard.this.fields[rowInt][columnInt].take();
+        this.moveOut();
       }
-      //Chessboard.this.fields[this.row][this.column].take();
 
       this.row = row;
       this.column = column;

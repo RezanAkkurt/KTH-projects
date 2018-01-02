@@ -27,5 +27,27 @@ public class ReachableFieldsOnChessboard{
     // mark reachable fields, unmark reachable fields and then step off chessboard so that next chesspiece can present itself).
 
     Random rand = new Random();
+
+    System.out.println("Pawn: " + pieces[0] +
+                        "\nRook: " + pieces[1] +
+                          "\nQueen: " + pieces[2] +
+                            "\nBishop: " + pieces[3] +
+                              "\nKing: " + pieces[4] +
+                                "\nKnight: " + pieces[5] + "\n");
+
+    for (int i = 0; i < pieces.length; i++) {
+      char row = (char) (65 + rand.nextInt(8));
+      byte column = (byte) (rand.nextInt(8));
+      try{
+        pieces[i].moveTo(row, column);
+        pieces[i].markReachableFields();
+        System.out.println(chessBoard.toString());
+        pieces[i].unmarkReachableFields();
+        pieces[i].moveOut();
+
+      } catch(Exception e){
+        System.out.println(e);
+      }
+    }
   }
 }
