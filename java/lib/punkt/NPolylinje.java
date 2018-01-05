@@ -7,19 +7,22 @@ public class NPolylinje implements PolylinjeInterface {
     public Punkt horn;
     public Nod nastaNod;
     public Nod (Punkt horn) {
-      this.horn = horn;
-      nastaNod = null;
+      this.horn = horn; // Nodens hörn i form av punkt
+      nastaNod = null; // nastaNod är en länk till nästa noden (nästa hörn)
     }
   }
 
+  // Private parameters
   private Nod horn;
   private String farg = "svart";
   private int bredd = 1; // pixlar
 
+  // null-constructor
   public NPolylinje () {
     this.horn = null;
   }
 
+  // Constructor som skapar en polylinje i form av noder av en array of hörn
   public NPolylinje (Punkt[] horn){
     if (horn.length > 0) {
       Nod nod = new Nod (new Punkt (horn[0]));
@@ -33,5 +36,15 @@ public class NPolylinje implements PolylinjeInterface {
   }
 
   // ytterligare kod här
+  public Punkt[] getHorn ();
+  public String getFarg ();
+  public int getBredd ();
+  public double langd ();
+  public void setFarg (String farg);
+  public void setBredd (int bredd);
+  public void laggTill (Punkt horn);
+  public void laggTillFramfor (Punkt horn, String hornNamn);
+  public void taBort (String hornNamn);
+  public java.util.Iterator<Punkt> iterator ();
 
 }
