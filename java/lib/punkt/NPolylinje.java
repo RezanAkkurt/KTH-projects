@@ -36,15 +36,44 @@ public class NPolylinje implements PolylinjeInterface {
   }
 
   // ytterligare kod här
-  public Punkt[] getHorn ();
-  public String getFarg ();
-  public int getBredd ();
-  public double langd ();
-  public void setFarg (String farg);
-  public void setBredd (int bredd);
-  public void laggTill (Punkt horn);
-  public void laggTillFramfor (Punkt horn, String hornNamn);
-  public void taBort (String hornNamn);
-  public java.util.Iterator<Punkt> iterator ();
+  public Punkt[] getHorn (){
+
+  }
+
+  public String getFarg (){
+    return this.farg;
+  }
+
+  public int getBredd (){
+    return this.bredd;
+  }
+
+  public double langd (){
+
+  }
+
+  public void setFarg (String farg){
+
+  }
+
+  public void setBredd (int bredd){
+
+  }
+
+  public void laggTill (Punkt horn){
+
+  }
+
+  public void laggTillFramfor (Punkt horn, String hornNamn){
+
+  }
+
+  public void taBort (String hornNamn){
+
+  }
+
+  public java.util.Iterator<Punkt> iterator (){
+    
+  }
 
 }
