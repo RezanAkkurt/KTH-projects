@@ -36,6 +36,14 @@ public class testNode{
 
     System.out.println("polylinje1 = " + polylinje1 + "\npolylinje2 = " + polylinje2);
 
+    System.out.println("Antal noder i polylinje1 = " + polylinje1.amountOfNodes());
+
+    System.out.println("Vilken punkt vill du ta bort?");
+    String taBortPunkt = in.next();
+    polylinje1.taBort(taBortPunkt);
+    System.out.println("polylinje1 = " + polylinje1);
+    System.out.println("polylinje2 = " + polylinje2);
+
 
   }
 }

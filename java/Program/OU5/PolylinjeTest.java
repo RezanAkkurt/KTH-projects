@@ -66,6 +66,5 @@ class PolylinjeTest{
     p1.taBort(taBortPunkt);
     System.out.println("p1 = " + p1);
 
-
   }
 }

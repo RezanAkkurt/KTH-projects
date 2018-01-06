@@ -38,27 +38,25 @@ public class NPolylinje implements PolylinjeInterface {
   }
 
   public String toString(){
-//    StringBuilder s = new StringBuilder();
-//    s.append("[");
-//    for(int i = 0; i < horn.length; i++){
-//      s.append(this.horn[i] + ", ");
-//    }
-//    s.append("farg = " + getFarg() + ", bredd = " + getBredd() + "]");
-//    String string = s.toString();
-//    return string;
     StringBuilder s = new StringBuilder();
-    s.append("[");
-    Nod currentNode = this.horn; // currentNode = first Node in NPolylinje
-    while(currentNode.nastaNod != null){
-      s.append(currentNode.horn + ", ");
-      currentNode = currentNode.nastaNod;
+    if(this.horn != null){
+      s.append("[");
+      Nod currentNode = this.horn; // currentNode = first Node in NPolylinje
+      while(currentNode.nastaNod != null){
+        s.append(currentNode.horn + ", ");
+        currentNode = currentNode.nastaNod;
+      }
+      s.append(currentNode.horn + ", "); // Add the last node since the while-loop does not cover this node (because the nastaNod of the last node is = null)
+      s.append("farg = " + this.farg + ", bredd = " + this.bredd + "]");
+    } else {
+      s.append("Det finns inga horn i polylinjen!");
     }
-    s.append("farg = " + this.farg + ", bredd = " + this.bredd + "]");
 
     return s.toString();
   }
 
   // ytterligare kod här
+
   public int amountOfNodes(){
     int antalNoder = 0;
     Nod currentNode = this.horn; // currentNode = first Node in NPolylinje
@@ -74,7 +72,7 @@ public class NPolylinje implements PolylinjeInterface {
   public Punkt[] getHorn (){
     Punkt[] copyPunkter = new Punkt[amountOfNodes()];
     Nod currentNode = this.horn; // currentNode = first Node in NPolylinje
-//    copyPunkter[0] = new Punkt (currentNode.horn);
+    //    copyPunkter[0] = new Punkt (currentNode.horn);
     for(int i = 0; i < amountOfNodes(); i++){
       copyPunkter[i] = new Punkt (currentNode.horn);
       currentNode = currentNode.nastaNod;
@@ -119,8 +117,29 @@ public class NPolylinje implements PolylinjeInterface {
 
   }
 
-  // Remove a certain node
+  // Remove a given node
   public void taBort (String hornNamn){
+    // Detta går även att göra på annat sätt genom amountOfNodes metoden(genom for-loop?)
+
+    Nod currentNode = this.horn; // currentNode = first Node in NPolylinje / De pekar till samma objekt
+
+    if(currentNode.horn.getNamn().equals(hornNamn)){ // Kollar första noden i polylinjen som ska tas bort
+      this.horn = currentNode.nastaNod; // I så fall sätts polylinjens första nod till att vara den andra noden. (om det inte finns en andra så blir this.horn = null)
+    }
+
+    while(currentNode.nastaNod != null){ // While-loopen körs så länge det finns en nästa nod i polylinjen
+
+      if(currentNode.nastaNod.horn.getNamn().equals(hornNamn)){
+        if(currentNode.nastaNod.nastaNod == null){ //Kollar om noden som ska tas bort är den sista Noden i polylinjen
+          currentNode.nastaNod = null; // Om det är den sista noden i polylinjen som ska tas bort så sätts den nästsista nodens nastaNod = null;
+        } else{
+          currentNode.nastaNod = currentNode.nastaNod.nastaNod; // Hoppar över den Nod som ska tas bort.
+        }
+      }
+      if(currentNode.nastaNod != null){ //Kollar så att det finns en nästa nod så att vi inte får NullPointerException
+        currentNode = currentNode.nastaNod; // Om det finns en nästa nod i polylinjen så ska currentNode uppdateras till den nästa noden i linjen.
+      }
+    }
 
   }
 
