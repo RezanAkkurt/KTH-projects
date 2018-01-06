@@ -2,7 +2,7 @@ package lib.punkt;
 
 import lib.punkt.Punkt;
 
-public interface PolylinjeInterface extends java.lang.Iterable<Punkt> {
+public interface PolylinjeInterface { // extends java.lang.Iterable<Punkt> {
   Punkt[] getHorn ();
   String getFarg ();
   int getBredd ();
@@ -12,5 +12,5 @@ public interface PolylinjeInterface extends java.lang.Iterable<Punkt> {
   public void laggTill (Punkt horn);
   void laggTillFramfor (Punkt horn, String hornNamn);
   void taBort (String hornNamn);
-  java.util.Iterator<Punkt> iterator ();
+//  java.util.Iterator<Punkt> iterator ();
 }
