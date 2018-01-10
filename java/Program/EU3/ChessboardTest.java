@@ -15,9 +15,10 @@ public class ChessboardTest{
     */
 
     Chessboard.Chesspiece p1 = chessboard.new Pawn('w', 'P');
-    // Man kan även skriva Chessboard.Pawn p1 = chessboard.new Pawn('w', 'P');
+    //Man kan även skriva Chessboard.Pawn p1 = chessboard.new Pawn('w', 'P');
     // Notera skillnaden mellan att skapa en referens-variabel av typen Chesspiece (abstract super class) och en referens-variabel av typen
     // Pawn (non-abstract class). Fråga Fadil vilken som är bäst.
+    // Detta påverkar referenstypen och dess förmåga att lagras i en array med andra chesspieces (förutsatt att de refereras med samma typ av referens (Chesspiece))
 
     try{
       p1.moveTo('A', (byte) 2);

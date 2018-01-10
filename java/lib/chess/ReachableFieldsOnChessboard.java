@@ -40,7 +40,8 @@ public class ReachableFieldsOnChessboard{
       byte column = (byte) (rand.nextInt(8));
       try{
         pieces[i].moveTo(row, column);
-        pieces[i].markReachableFields();
+        pieces[i].markReachableFields(); // Polymorfism - när den vet vet vilken som ska användas om king så anropas den metoden i king klassen
+                                        // Fungerar bara om metoden finns i root-metoden (i superklassen)
         System.out.println(chessBoard.toString());
         pieces[i].unmarkReachableFields();
         pieces[i].moveOut();
