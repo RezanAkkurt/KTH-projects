@@ -3,6 +3,14 @@
 #include<stdio.h> //include information about standard library
 
 
+// Pointers
+
+/*
+int *p; // Creates pointer variable ("p") of type int, ie it can store memory adress to an int variable.
+p = &var; // Stores the memory adress of variable "var" (var must be variable of type int)
+*p = dereferences pointer p, ie access or assign value to the memory that pointer p points to
+*/
+
 // adder is a function that recieves pointer refrences/variables (ie they contain the memory adress of other parts of the memory (our "real" variables))
 // "A pointer is a variable whose value is the address of another variable, i.e., direct address of the memory location."
 // the first two pointer variables are constants so that they cant be changed.
@@ -25,7 +33,13 @@ int main(void){ // define a function called main that received no argument value
     printf("Hello World \n"); //main calls library function printf to print this sequence of characters, \n represents the newline character
 
     int test = foo(7);
-    printf("Test = %d",test);
+    printf("Test = %d\n",test);
 
-    return 0;
+
+    int test1 = 22;
+    int *j;
+    j = &test1;
+    *j = 20;
+    printf("%d\n", test1);
+
 }
