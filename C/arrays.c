@@ -64,23 +64,23 @@ void *q = &arr; // void pointers are compatible with pointers to any object
 */
 #include <stdio.h>
 
-void square_reverse(const double *x, double *y, const int len);
+void square_reverse(double *x, double *y, const int len);
 
 int main(void){
 
-    double in[] = {11.0, 20.0, 100.0};
-    double out[3];
-    square_reverse(in, out, 3); // går också att skicka array som &in[0];
-    for(int i = 0; i < 3; i++) {
-      printf("%lf ", out[i]);
+    double in[] = {11.0, 20.0, 100.0, 10};
+    double out[4];
+    square_reverse(in, out, 4); // går också att skicka array som &in[0];
+    for(int i = 0; i < 4; i++) {
+      printf("%lf \n", out[i]);
     }
 
 }
 
-void square_reverse(const double *x, double *y, const int len){
-  double temp;
+void square_reverse(double *x, double *y, const int len){
   for(int i = 0; i < len; i++){
-    temp = x[i] * x[i];
-    y[len - 1 - i] = temp;
+    printf("%lf \n", x[i]);
+    x[i] = x[i] * x[i];
+    y[len - 1 - i] = x[i];
   }
 }
