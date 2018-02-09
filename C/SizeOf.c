@@ -54,6 +54,7 @@ int main()
     double  d       =1222.90;
     char    str[]   ="Hello"; //one byte for each char and one byte for \o to tell processor where the string ends?
 
+    printf("Different sizes of datatypes in bytes:");
     printf("\nSize of char: %d",sizeof(a));
     printf("\nSize of int: %d",sizeof(b));
     printf("\nSize of float: %d",sizeof(c));
