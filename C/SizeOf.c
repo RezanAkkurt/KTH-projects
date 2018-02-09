@@ -1,7 +1,7 @@
 /*C program to print size of variables using sizeof() operator.
 
 A bit stores just a 0 or 1
-One byte = grouping of 8 bits
+One byte = grouping of 8 bits (0000 0000 - 1111 1111, = 0-255)
 
 In general: add 1 bit, double the number of patterns
 1 bit - 2 patterns
