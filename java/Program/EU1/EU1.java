@@ -41,6 +41,8 @@ Man ska aktivera bara spårutskriften 1. Analysera de data som erhålls och hitt
 5. Lös problemet på ett annat sätt: skapa en ny metod min som bestämmer det minsta elementet i samlingen.
 I denna metod ska inte urskiljningsstrategin användas, utan en minneseffektivare och enklare strategi: uppdateringsstrategin.
 
+Hej
+
 *******************************************************************************/
 
 import lib.algoritmer.MinstaHeltalet;
