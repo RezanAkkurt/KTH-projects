@@ -12,6 +12,7 @@
 // The idea is to find the first prime number that is a factor of the given number. Then we
 // divide our number with that prime number and get a smaller number. This new smaller number
 // we then keep trying to divide to recieve a 0 remainder.
+// 
 
 class Problem3{
   public static void main(String[] args) {

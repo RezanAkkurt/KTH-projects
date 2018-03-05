@@ -15,6 +15,7 @@ och bestämmer siffrorna i resultatet, en siffra i taget.
 På så sätt skapas en ny teckensträng, som representerar resultatet av operationen.
 
 *******************************************************************************/
+
 import lib.matematik.*;
 
 public class OU4{
