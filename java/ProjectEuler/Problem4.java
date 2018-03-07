@@ -3,5 +3,6 @@ class Problem4 {
 		System.out.println("Hej, detta är ett test.");
 		// Hej
 		System.out.println("Onsdag 7 mars");
+		System.out.println("10:35");
 	}
 }
