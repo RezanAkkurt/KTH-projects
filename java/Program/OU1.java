@@ -10,7 +10,7 @@ class OU1{
     System.out.println("Temperaturmatning!");
     System.out.println();
 
-    java.util.Scanner    in = new java.util.Scanner(System.in);
+    java.util.Scanner in = new java.util.Scanner(System.in);
     in.useLocale(java.util.Locale.US);
 
     // Mata in antal veckor och antal mätningar per vecka, lagra detta i heltalsvariabler
