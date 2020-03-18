@@ -9,7 +9,7 @@ class OU1{
   public static void main(String[]args){
     System.out.println("Temperaturmatning!");
     System.out.println();
-    System.out.println();
+
     java.util.Scanner in = new java.util.Scanner(System.in);
     in.useLocale(java.util.Locale.US);
 
@@ -116,6 +116,8 @@ class OU1{
     medTemp = sumMedTemp/antalVeckor;
     System.out.println("Medeltemperaturen under hela matperioder ar: " + medTemp);
 
+
+    in.close();
   }
 
 
